@@ -8,34 +8,59 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {Platform, StyleSheet, ScrollView, View} from 'react-native';
 
-import {List, Button, useTheme} from 'react-native-paper';
+import {List, Button, Text, useTheme} from 'react-native-paper';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import 'react-native/tvos-types.d';
 
 const App = () => {
   const {colors} = useTheme();
-
+  const [button1Focused, setButton1Focused] = useState(false);
+  const [button2Focused, setButton2Focused] = useState(false);
+  /*
+  useTVEventHandler((evt: HWKeyEvent) => {
+    if (evt.eventType !== 'focus' && evt.eventType !== 'blur') {
+      setMessage(evt.eventType);
+    }
+  });
+ */
   return (
-    <ScrollView
-      style={[styles.container, {backgroundColor: colors.background}]}>
-      <List.Section title="Button examples">
-        <View style={styles.row}>
-          <Button onPress={() => {}} style={styles.button}>
-            Default
-          </Button>
-          <Button
-            tvParallaxProperties={{enabled: true, magnification: 1.1}}
-            icon="camera"
-            onPress={() => {}}
-            style={styles.button}>
-            Icon
-          </Button>
-        </View>
-      </List.Section>
-    </ScrollView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        style={[styles.container, {backgroundColor: colors.background}]}>
+        <List.Section title="TV button example">
+          <View style={styles.row}>
+            <Button
+              style={styles.button}
+              onPress={() => {}}
+              onFocus={() => setButton1Focused(true)}
+              onBlur={() => setButton1Focused(false)}>
+              Button 1
+            </Button>
+            <Button
+              style={styles.button}
+              onPress={() => {}}
+              onFocus={() => setButton2Focused(true)}
+              onBlur={() => setButton2Focused(false)}>
+              Button 2
+            </Button>
+          </View>
+        </List.Section>
+        <List.Section title="Messages">
+          <View style={styles.text}>
+            <Text>
+              Button 1 is {button1Focused ? 'focused' : 'not focused'}
+            </Text>
+            <Text>
+              Button 2 is {button2Focused ? 'focused' : 'not focused'}
+            </Text>
+          </View>
+        </List.Section>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -46,6 +71,9 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    paddingHorizontal: Platform.isTV ? 30 : 15,
+  },
+  text: {
     paddingHorizontal: Platform.isTV ? 30 : 15,
   },
   button: {
