@@ -11,7 +11,7 @@
 import React, {useState} from 'react';
 import {Platform, StyleSheet, ScrollView, View} from 'react-native';
 
-import {List, Button, Text, useTheme} from 'react-native-paper';
+import {List, Button, Text, TextInput, useTheme} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import 'react-native/tvos-types.d';
@@ -20,6 +20,7 @@ const App = () => {
   const {colors} = useTheme();
   const [button1Focused, setButton1Focused] = useState(false);
   const [button2Focused, setButton2Focused] = useState(false);
+  const [inputText, setInputText] = useState('');
   /*
   useTVEventHandler((evt: HWKeyEvent) => {
     if (evt.eventType !== 'focus' && evt.eventType !== 'blur') {
@@ -59,6 +60,14 @@ const App = () => {
             </Text>
           </View>
         </List.Section>
+        <TextInput
+          label="Text Input"
+          mode="outlined"
+          textContentType="telephoneNumber"
+          keyboardType="number-pad"
+          value={inputText}
+          onChangeText={(src) => setInputText(src)}
+        />
       </ScrollView>
     </SafeAreaView>
   );
