@@ -29,3 +29,46 @@ index cca903d..32ad4ff 100644
          onPressIn={handlePressIn}
          onPressOut={handlePressOut}
          accessibilityLabel={accessibilityLabel}
+diff --git a/node_modules/react-native-paper/src/components/TextInput/constants.tsx b/node_modules/react-native-paper/src/components/TextInput/constants.tsx
+index a23449c..fcc67c4 100644
+--- a/node_modules/react-native-paper/src/components/TextInput/constants.tsx
++++ b/node_modules/react-native-paper/src/components/TextInput/constants.tsx
+@@ -1,5 +1,5 @@
+-export const MAXIMIZED_LABEL_FONT_SIZE = 16;
+-export const MINIMIZED_LABEL_FONT_SIZE = 12;
++export const MAXIMIZED_LABEL_FONT_SIZE = 30;
++export const MINIMIZED_LABEL_FONT_SIZE = 30;
+ export const LABEL_WIGGLE_X_OFFSET = 4;
+ export const LABEL_PADDING_HORIZONTAL = 12;
+ export const ADORNMENT_SIZE = 24;
+diff --git a/node_modules/react-native-paper/src/components/TouchableRipple/TouchableRipple.tsx b/node_modules/react-native-paper/src/components/TouchableRipple/TouchableRipple.tsx
+index 8e2ac70..15ff8ac 100644
+--- a/node_modules/react-native-paper/src/components/TouchableRipple/TouchableRipple.tsx
++++ b/node_modules/react-native-paper/src/components/TouchableRipple/TouchableRipple.tsx
+@@ -54,6 +54,8 @@ type Props = React.ComponentPropsWithRef<typeof TouchableWithoutFeedback> & {
+    * @optional
+    */
+   theme: ReactNativePaper.Theme;
++  onFocus?: () => void;
++  onBlur?: () => void;
+ };
+ 
+ /**
+@@ -96,6 +98,8 @@ const TouchableRipple = ({
+   underlayColor: _underlayColor,
+   children,
+   theme,
++  onFocus,
++  onBlur,
+   ...rest
+ }: Props) => {
+   const handlePressIn = (e: any) => {
+@@ -236,6 +240,8 @@ const TouchableRipple = ({
+       {...rest}
+       onPressIn={handlePressIn}
+       onPressOut={handlePressOut}
++      onFocus={onFocus}
++      onBlur={onBlur}
+       disabled={disabled}
+     >
+       <View style={[styles.touchable, borderless && styles.borderless, style]}>
