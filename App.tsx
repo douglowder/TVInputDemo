@@ -8,8 +8,14 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {Platform, StyleSheet, ScrollView, View} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {
+  Platform,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import {List, Button, Text, TextInput, useTheme} from 'react-native-paper';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -28,6 +34,7 @@ const App = () => {
     }
   });
  */
+  const textInputRef = useRef();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -48,6 +55,19 @@ const App = () => {
               onBlur={() => setButton2Focused(false)}>
               Button 2
             </Button>
+            <TouchableOpacity
+              style={{flex: 1}}
+              onPress={() => textInputRef?.current?.focus()}>
+              <TextInput
+                ref={textInputRef}
+                label="Text Input"
+                mode="outlined"
+                textContentType="telephoneNumber"
+                keyboardType="number-pad"
+                value={inputText}
+                onChangeText={(src) => setInputText(src)}
+              />
+            </TouchableOpacity>
           </View>
         </List.Section>
         <List.Section title="Messages">
@@ -60,14 +80,6 @@ const App = () => {
             </Text>
           </View>
         </List.Section>
-        <TextInput
-          label="Text Input"
-          mode="outlined"
-          textContentType="telephoneNumber"
-          keyboardType="number-pad"
-          value={inputText}
-          onChangeText={(src) => setInputText(src)}
-        />
       </ScrollView>
     </SafeAreaView>
   );
