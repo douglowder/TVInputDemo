@@ -42,6 +42,7 @@ const App = () => {
         <List.Section title="TV button example">
           <View style={styles.row}>
             <Button
+              tvParallaxProperties={{enabled: true, pressMagnification: 1.1}}
               style={styles.button}
               onPress={() => {}}
               onFocus={() => setButton1Focused(true)}
@@ -49,6 +50,7 @@ const App = () => {
               Button 1
             </Button>
             <Button
+              tvParallaxProperties={{enabled: true, pressMagnification: 1.1}}
               style={styles.button}
               onPress={() => {}}
               onFocus={() => setButton2Focused(true)}

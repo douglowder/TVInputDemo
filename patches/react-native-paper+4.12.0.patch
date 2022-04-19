@@ -1,0 +1,93 @@
+diff --git a/node_modules/react-native-paper/src/components/Button.tsx b/node_modules/react-native-paper/src/components/Button.tsx
+index 69d60a3..a77f32b 100644
+--- a/node_modules/react-native-paper/src/components/Button.tsx
++++ b/node_modules/react-native-paper/src/components/Button.tsx
+@@ -65,6 +65,14 @@ type Props = React.ComponentProps<typeof Surface> & {
+    * Accessibility hint for the button. This is read by the screen reader when the user taps the button.
+    */
+   accessibilityHint?: string;
++  /**
++   * Function to execute on focus.
++   */
++  onFocus?: () => void;
++  /**
++   * Function to execute on blur.
++   */
++  onBlur?: () => void;
+   /**
+    * Function to execute on press.
+    */
+@@ -91,6 +99,10 @@ type Props = React.ComponentProps<typeof Surface> & {
+    * testID to be used on tests.
+    */
+   testID?: string;
++  /**
++   * Parallax properties for Apple TV.
++   */
++  tvParallaxProperties?: any;
+ };
+ 
+ /**
+@@ -137,6 +149,8 @@ const Button = ({
+   uppercase = true,
+   accessibilityLabel,
+   accessibilityHint,
++  onFocus,
++  onBlur,
+   onPress,
+   onLongPress,
+   style,
+@@ -144,6 +158,7 @@ const Button = ({
+   contentStyle,
+   labelStyle,
+   testID,
++  tvParallaxProperties,
+   accessible,
+   ...rest
+ }: Props) => {
+@@ -154,6 +169,16 @@ const Button = ({
+     elevation.setValue(mode === 'contained' ? 2 : 0);
+   }, [mode, elevation]);
+ 
++  const handleFocus = () => {
++    onFocus && onFocus();
++    handlePressIn();
++  };
++
++  const handleBlur = () => {
++    onBlur && onBlur();
++    handlePressOut();
++  };
++
+   const handlePressIn = () => {
+     if (mode === 'contained') {
+       const { scale } = theme.animation;
+@@ -276,6 +301,8 @@ const Button = ({
+         onLongPress={onLongPress}
+         onPressIn={handlePressIn}
+         onPressOut={handlePressOut}
++        onFocus={handleFocus}
++        onBlur={handleBlur}
+         accessibilityLabel={accessibilityLabel}
+         accessibilityHint={accessibilityHint}
+         // @ts-expect-error We keep old a11y props for backwards compat with old RN versions
+@@ -288,6 +315,7 @@ const Button = ({
+         rippleColor={rippleColor}
+         style={touchableStyle}
+         testID={testID}
++        tvParallaxProperties={tvParallaxProperties}
+       >
+         <View style={[styles.content, contentStyle]}>
+           {icon && loading !== true ? (
+diff --git a/node_modules/react-native-paper/src/components/TextInput/constants.tsx b/node_modules/react-native-paper/src/components/TextInput/constants.tsx
+index a23449c..fcc67c4 100644
+--- a/node_modules/react-native-paper/src/components/TextInput/constants.tsx
++++ b/node_modules/react-native-paper/src/components/TextInput/constants.tsx
+@@ -1,5 +1,5 @@
+-export const MAXIMIZED_LABEL_FONT_SIZE = 16;
+-export const MINIMIZED_LABEL_FONT_SIZE = 12;
++export const MAXIMIZED_LABEL_FONT_SIZE = 30;
++export const MINIMIZED_LABEL_FONT_SIZE = 30;
+ export const LABEL_WIGGLE_X_OFFSET = 4;
+ export const LABEL_PADDING_HORIZONTAL = 12;
+ export const ADORNMENT_SIZE = 24;
