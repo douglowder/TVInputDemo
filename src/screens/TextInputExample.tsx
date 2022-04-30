@@ -1,0 +1,66 @@
+/*
+ * Shows a bare TextInput, then TextInput components wrapped with Touchables
+ * for more styling control
+ */
+
+import React, {useState, useRef} from 'react';
+import {TouchableOpacity, View} from 'react-native';
+
+import {List, TextInput} from 'react-native-paper';
+
+import {RowContainer} from '../common/StyledComponents';
+
+import styles from '../common/styles';
+
+import 'react-native/tvos-types.d';
+
+const TextInputExample = () => {
+  const [inputText, setInputText] = useState('Dougie MacLowder');
+  const [inputNumber, setInputNumber] = useState('655321');
+  const textInputRef = useRef();
+  const numberInputRef = useRef();
+
+  return (
+    <List.Section title="Text Input">
+      <RowContainer>
+        <TextInput
+          label=""
+          style={styles.textInput}
+          mode="flat"
+          value={inputText}
+          onChangeText={(src) => setInputText(src)}
+        />
+      </RowContainer>
+      <RowContainer>
+        <TouchableOpacity
+          style={styles.textInput}
+          onPress={() => textInputRef?.current?.focus()}>
+          <TextInput
+            ref={textInputRef}
+            label="Full input"
+            mode="outlined"
+            value={inputText}
+            onChangeText={(src) => setInputText(src)}
+          />
+        </TouchableOpacity>
+      </RowContainer>
+      <RowContainer>
+        <TouchableOpacity
+          style={styles.textInput}
+          onPress={() => numberInputRef?.current?.focus()}>
+          <TextInput
+            ref={numberInputRef}
+            label="Number pad input"
+            mode="outlined"
+            textContentType="telephoneNumber"
+            keyboardType="number-pad"
+            value={inputNumber}
+            onChangeText={(src) => setInputNumber(src)}
+          />
+        </TouchableOpacity>
+      </RowContainer>
+    </List.Section>
+  );
+};
+
+export default TextInputExample;
