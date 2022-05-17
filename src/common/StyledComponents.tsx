@@ -10,7 +10,7 @@ import styles from './styles';
 import 'react-native/tvos-types.d';
 
 const Button = React.forwardRef(
-  (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref) => {
+  (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
     return (
       <PaperButton
         ref={ref}
