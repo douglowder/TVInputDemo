@@ -4,11 +4,11 @@
  */
 
 import React, {useState, useRef} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 
-import {List, TextInput} from 'react-native-paper';
+import {TextInput} from 'react-native-paper';
 
-import {RowContainer} from '../common/StyledComponents';
+import {RowContainer, SectionContainer} from '../common/StyledComponents';
 
 import styles from '../common/styles';
 
@@ -17,13 +17,14 @@ import 'react-native/tvos-types.d';
 const TextInputExample = () => {
   const [inputText, setInputText] = useState('Dougie MacLowder');
   const [inputNumber, setInputNumber] = useState('655321');
-  const textInputRef = useRef();
-  const numberInputRef = useRef();
+  const textInputRef = useRef<any>();
+  const numberInputRef = useRef<any>();
 
   return (
-    <List.Section title="Text Input">
+    <SectionContainer title="Text Input">
       <RowContainer>
         <TextInput
+          autoComplete="off"
           label=""
           style={styles.textInput}
           mode="flat"
@@ -36,6 +37,7 @@ const TextInputExample = () => {
           style={styles.textInput}
           onPress={() => textInputRef?.current?.focus()}>
           <TextInput
+            autoComplete="off"
             ref={textInputRef}
             label="Full input"
             mode="outlined"
@@ -49,6 +51,7 @@ const TextInputExample = () => {
           style={styles.textInput}
           onPress={() => numberInputRef?.current?.focus()}>
           <TextInput
+            autoComplete="off"
             ref={numberInputRef}
             label="Number pad input"
             mode="outlined"
@@ -59,7 +62,7 @@ const TextInputExample = () => {
           />
         </TouchableOpacity>
       </RowContainer>
-    </List.Section>
+    </SectionContainer>
   );
 };
 

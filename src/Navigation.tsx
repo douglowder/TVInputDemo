@@ -6,11 +6,7 @@
 import React from 'react';
 import {BackHandler, TVEventControl, View} from 'react-native';
 
-import {List} from 'react-native-paper';
-
-import {Button} from './common/StyledComponents';
-
-import styles from './common/styles';
+import {Button, SectionContainer} from './common/StyledComponents';
 
 import SimpleButtonExample from './screens/SimpleButtonExample';
 import ButtonsWithFocusHandlingExample from './screens/ButtonsWithFocusHandlingExample';
@@ -81,7 +77,7 @@ const Navigation = () => {
     return screen;
   }
   return (
-    <List.Section title="Menu">
+    <SectionContainer title="Menu">
       <View>
         {navigation.map((item) => (
           <Button key={item.key} onPress={() => setScreen(item.component)}>
@@ -89,7 +85,7 @@ const Navigation = () => {
           </Button>
         ))}
       </View>
-    </List.Section>
+    </SectionContainer>
   );
 };
 

@@ -6,9 +6,12 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 
-import {List} from 'react-native-paper';
-
-import {Button, RowContainer, Text} from '../common/StyledComponents';
+import {
+  Button,
+  RowContainer,
+  SectionContainer,
+  Text,
+} from '../common/StyledComponents';
 
 import styles from '../common/styles';
 
@@ -18,7 +21,7 @@ const ButtonsWithFocusHandlingExample = () => {
   const [button1Focused, setButton1Focused] = useState(false);
   const [button2Focused, setButton2Focused] = useState(false);
   return (
-    <List.Section title="TV button example with focus handling">
+    <SectionContainer title="TV button example with focus handling">
       <RowContainer>
         <Button
           style={styles.button}
@@ -37,7 +40,7 @@ const ButtonsWithFocusHandlingExample = () => {
         <Text>Button 1 is {button1Focused ? 'focused' : 'not focused'}</Text>
         <Text>Button 2 is {button2Focused ? 'focused' : 'not focused'}</Text>
       </View>
-    </List.Section>
+    </SectionContainer>
   );
 };
 

@@ -5,9 +5,12 @@
 import React from 'react';
 import {View, TVFocusGuideView} from 'react-native';
 
-import {List} from 'react-native-paper';
-
-import {Button, RowContainer, Spacer, Text} from '../common/StyledComponents';
+import {
+  Button,
+  RowContainer,
+  SectionContainer,
+  Spacer,
+} from '../common/StyledComponents';
 
 import styles from '../common/styles';
 
@@ -32,7 +35,7 @@ const TVFocusGuideViewExample = () => {
   };
 
   return (
-    <List.Section title="TVFocusGuideView example">
+    <SectionContainer title="TVFocusGuideView example">
       <RowContainer>
         <Button onPress={() => toggleFocusGuides()}>
           {focusGuidesAdded ? 'Remove focus guides' : 'Add focus guides'}
@@ -87,7 +90,7 @@ const TVFocusGuideViewExample = () => {
           Button 2
         </Button>
       </RowContainer>
-    </List.Section>
+    </SectionContainer>
   );
 };
 

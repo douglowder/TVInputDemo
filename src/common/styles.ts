@@ -1,39 +1,42 @@
-import {Platform, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import sizes from './sizes';
+import TVTheme from './TVTheme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: TVTheme.colors.surface,
   },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: Platform.isTV ? 30 : 15,
-    paddingVertical: Platform.isTV ? 30 : 15,
+    padding: sizes.rowPadding,
   },
   text: {
-    paddingHorizontal: Platform.isTV ? 20 : 10,
-    paddingVertical: Platform.isTV ? 20 : 10,
+    padding: sizes.textPadding,
   },
   textInput: {
     flex: 1,
   },
+  labelStyle: {
+    color: TVTheme.colors.primary,
+  },
   button: {
-    margin: 4,
+    margin: sizes.buttonMargin,
     uppercaseLabel: false,
   },
   focusGuideVisible: {
-    width: 50,
-    backgroundColor: '#dddddd',
+    width: sizes.focusGuideWidth,
+    backgroundColor: TVTheme.colors.error,
   },
   focusGuideHidden: {
-    width: 50,
+    width: sizes.focusGuideWidth,
   },
   emptyFocusGuide: {
-    width: 50,
+    width: sizes.focusGuideWidth,
   },
   spacer: {
-    width: 500,
+    width: sizes.spacerWidth,
   },
 });
 

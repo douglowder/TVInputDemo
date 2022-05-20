@@ -2,7 +2,11 @@
  * Wrapped Button component using react-native-paper
  */
 import React from 'react';
-import {Button as PaperButton, Text as PaperText} from 'react-native-paper';
+import {
+  Button as PaperButton,
+  List,
+  Text as PaperText,
+} from 'react-native-paper';
 import {View} from 'react-native';
 
 import styles from './styles';
@@ -15,7 +19,7 @@ const Button = React.forwardRef(
       <PaperButton
         ref={ref}
         uppercase={false}
-        labelStyle={{color: '#0000ff', fontSize: 30}}
+        labelStyle={styles.labelStyle}
         color="#8888ff"
         nextFocusLeft={props.nextFocusLeft}
         nextFocusRight={props.nextFocusRight}
@@ -31,7 +35,7 @@ const Button = React.forwardRef(
 );
 
 const Text = (props: React.ComponentProps<typeof PaperText>) => {
-  return <PaperText>{props.children}</PaperText>;
+  return <PaperText style={styles.text}>{props.children}</PaperText>;
 };
 
 const Spacer = () => {
@@ -42,4 +46,8 @@ const RowContainer = (props: React.ComponentProps<typeof View>) => {
   return <View style={styles.row}>{props.children}</View>;
 };
 
-export {Button, RowContainer, Spacer, Text};
+const SectionContainer = (props: React.ComponentProps<typeof List.Section>) => {
+  return <List.Section title={props.title}>{props.children}</List.Section>;
+};
+
+export {Button, RowContainer, SectionContainer, Spacer, Text};
