@@ -24,13 +24,11 @@ const ButtonsWithFocusHandlingExample = () => {
     <SectionContainer title="TV button example with focus handling">
       <RowContainer>
         <Button
-          style={styles.button}
           onFocus={() => setButton1Focused(true)}
           onBlur={() => setButton1Focused(false)}>
           Button 1
         </Button>
         <Button
-          style={styles.button}
           onFocus={() => setButton2Focused(true)}
           onBlur={() => setButton2Focused(false)}>
           Button 2

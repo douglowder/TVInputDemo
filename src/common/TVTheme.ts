@@ -8,6 +8,7 @@ const TVTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: '#0000ff',
+    accent: '#ccccff',
   },
   fonts: {
     regular: {

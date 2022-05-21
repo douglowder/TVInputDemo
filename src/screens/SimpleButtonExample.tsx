@@ -17,7 +17,12 @@ const SimpleButtonExample = () => {
     <SectionContainer title="TV button example">
       <RowContainer>
         <Button>Button 1</Button>
-        <Button>Button 2</Button>
+        <Button hasTVPreferredFocus={true}>
+          Button 2 gets preferred focus
+        </Button>
+        <Button tvParallaxProperties={{magnification: 1.1}}>
+          Button 3 magnifies on focus (tvOS)
+        </Button>
       </RowContainer>
     </SectionContainer>
   );

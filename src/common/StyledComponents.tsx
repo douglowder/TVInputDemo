@@ -16,18 +16,7 @@ import 'react-native/tvos-types.d';
 const Button = React.forwardRef(
   (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
     return (
-      <PaperButton
-        ref={ref}
-        uppercase={false}
-        labelStyle={styles.labelStyle}
-        color="#8888ff"
-        nextFocusLeft={props.nextFocusLeft}
-        nextFocusRight={props.nextFocusRight}
-        nextFocusUp={props.nextFocusUp}
-        nextFocusDown={props.nextFocusDown}
-        onPress={props.onPress}
-        onFocus={props.onFocus}
-        onBlur={props.onBlur}>
+      <PaperButton {...props} ref={ref} style={styles.button} uppercase={false}>
         {props.children}
       </PaperButton>
     );

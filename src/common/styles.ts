@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     padding: sizes.textPadding,
   },
   textInput: {
-    flex: 1,
+    fontSize: TVTheme.fonts.regular.fontSize,
   },
   labelStyle: {
     color: TVTheme.colors.primary,

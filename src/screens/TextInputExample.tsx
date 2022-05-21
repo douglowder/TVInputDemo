@@ -26,20 +26,21 @@ const TextInputExample = () => {
         <TextInput
           autoComplete="off"
           label=""
-          style={styles.textInput}
           mode="flat"
+          style={[styles.textInput, styles.container]}
           value={inputText}
           onChangeText={(src) => setInputText(src)}
         />
       </RowContainer>
       <RowContainer>
         <TouchableOpacity
-          style={styles.textInput}
+          style={styles.container}
           onPress={() => textInputRef?.current?.focus()}>
           <TextInput
             autoComplete="off"
             ref={textInputRef}
             label="Full input"
+            style={styles.textInput}
             mode="outlined"
             value={inputText}
             onChangeText={(src) => setInputText(src)}
@@ -48,12 +49,13 @@ const TextInputExample = () => {
       </RowContainer>
       <RowContainer>
         <TouchableOpacity
-          style={styles.textInput}
+          style={styles.container}
           onPress={() => numberInputRef?.current?.focus()}>
           <TextInput
             autoComplete="off"
             ref={numberInputRef}
             label="Number pad input"
+            style={styles.textInput}
             mode="outlined"
             textContentType="telephoneNumber"
             keyboardType="number-pad"
