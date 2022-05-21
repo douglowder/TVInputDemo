@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import {BackHandler, TVEventControl, View} from 'react-native';
+import {BackHandler, Platform, TVEventControl, View} from 'react-native';
 
 import {Button, SectionContainer} from './common/StyledComponents';
 
@@ -22,6 +22,7 @@ type NavigationScreen = {
   key: string;
   title: string;
   component: NavigationComponent;
+  worksOnAndroid: boolean;
 };
 
 const Navigation = () => {
@@ -49,28 +50,33 @@ const Navigation = () => {
   const navigation: NavigationScreen[] = [
     {
       key: 'SimpleButtonExample',
-      title: '(1) Simple button example',
+      title: 'Simple button example',
       component: <SimpleButtonExample />,
+      worksOnAndroid: true,
     },
     {
       key: 'ButtonsWithFocusHandlingExample',
-      title: '(2) Buttons with focus and blur handling',
+      title: 'Buttons with focus and blur handling',
       component: <ButtonsWithFocusHandlingExample />,
+      worksOnAndroid: true,
     },
     {
       key: 'TextInputExample',
-      title: '(3) Text input example',
+      title: 'Text input example',
       component: <TextInputExample />,
+      worksOnAndroid: true,
     },
     {
       key: 'TVFocusGuideViewExample',
-      title: '(4) TVFocusGuideView example',
+      title: 'TVFocusGuideView example',
       component: <TVFocusGuideViewExample />,
+      worksOnAndroid: false,
     },
     {
       key: 'NextFocusExample',
-      title: '(5) nextFocus API example',
+      title: 'nextFocus API example',
       component: <NextFocusExample />,
+      worksOnAndroid: true,
     },
   ];
   if (screen != null) {
@@ -79,11 +85,13 @@ const Navigation = () => {
   return (
     <SectionContainer title="Menu">
       <View>
-        {navigation.map((item) => (
-          <Button key={item.key} onPress={() => setScreen(item.component)}>
-            {item.title}
-          </Button>
-        ))}
+        {navigation
+          .filter((item) => Platform.OS === 'ios' || item.worksOnAndroid)
+          .map((item, i) => (
+            <Button key={item.key} onPress={() => setScreen(item.component)}>
+              ({i + 1}) {item.title}
+            </Button>
+          ))}
       </View>
     </SectionContainer>
   );
