@@ -7,7 +7,7 @@ import {
   List,
   Text as PaperText,
 } from 'react-native-paper';
-import {View} from 'react-native';
+import { View } from 'react-native';
 
 import styles from './styles';
 
@@ -16,7 +16,13 @@ import 'react-native/tvos-types.d';
 const Button = React.forwardRef(
   (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
     return (
-      <PaperButton {...props} ref={ref} style={styles.button} uppercase={false}>
+      <PaperButton
+        {...props}
+        ref={ref}
+        style={styles.button}
+        tvParallaxProperties={props.tvParallaxProperties ||
+          { pressMagnification: 1.1, pressDuration: 0.2 }}
+        uppercase={false}>
         {props.children}
       </PaperButton>
     );
@@ -39,4 +45,4 @@ const SectionContainer = (props: React.ComponentProps<typeof List.Section>) => {
   return <List.Section title={props.title}>{props.children}</List.Section>;
 };
 
-export {Button, RowContainer, SectionContainer, Spacer, Text};
+export { Button, RowContainer, SectionContainer, Spacer, Text };

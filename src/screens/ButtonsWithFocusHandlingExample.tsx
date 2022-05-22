@@ -3,8 +3,8 @@
  * to track focus, change state
  */
 
-import React, {useState} from 'react';
-import {View} from 'react-native';
+import React, { useState } from 'react';
+import { View } from 'react-native';
 
 import {
   Button,
@@ -12,8 +12,6 @@ import {
   SectionContainer,
   Text,
 } from '../common/StyledComponents';
-
-import styles from '../common/styles';
 
 import 'react-native/tvos-types.d';
 
@@ -34,10 +32,8 @@ const ButtonsWithFocusHandlingExample = () => {
           Button 2
         </Button>
       </RowContainer>
-      <View style={styles.text}>
-        <Text>Button 1 is {button1Focused ? 'focused' : 'not focused'}</Text>
-        <Text>Button 2 is {button2Focused ? 'focused' : 'not focused'}</Text>
-      </View>
+      <Text>Button 1 is {button1Focused ? 'focused' : 'not focused'}</Text>
+      <Text>Button 2 is {button2Focused ? 'focused' : 'not focused'}</Text>
     </SectionContainer>
   );
 };

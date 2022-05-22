@@ -3,15 +3,13 @@
  */
 
 import React from 'react';
-import {View} from 'react-native';
 
 import {
   Button,
   RowContainer,
   SectionContainer,
+  Spacer,
 } from '../common/StyledComponents';
-
-import styles from '../common/styles';
 
 import 'react-native/tvos-types.d';
 
@@ -29,10 +27,10 @@ const NextFocusExample = () => {
           onPress={() => {}}>
           Button 1
         </Button>
-        <View style={styles.spacer} />
+        <Spacer />
       </RowContainer>
       <RowContainer>
-        <View style={styles.spacer} />
+        <Spacer />
         <Button
           ref={(c: any) => setRight(c)}
           nextFocusLeft={left}

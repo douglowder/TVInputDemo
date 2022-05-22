@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {View, TVFocusGuideView} from 'react-native';
+import { View, TVFocusGuideView } from 'react-native';
 
 import {
   Button,
@@ -46,8 +46,8 @@ const TVFocusGuideViewExample = () => {
           </Button>
         ) : null}
       </RowContainer>
-      <RowContainer style={styles.row}>
-        <Button ref={button1Ref} onPress={() => {}}>
+      <RowContainer>
+        <Button ref={button1Ref} onPress={() => { }}>
           Button 1
         </Button>
         <Spacer />
@@ -86,7 +86,7 @@ const TVFocusGuideViewExample = () => {
           <View style={styles.emptyFocusGuide} />
         )}
         <Spacer />
-        <Button ref={button2Ref} onPress={() => {}}>
+        <Button ref={button2Ref} onPress={() => { }}>
           Button 2
         </Button>
       </RowContainer>
