@@ -3,8 +3,7 @@
  * to track focus, change state
  */
 
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React from 'react';
 
 import {
   Button,
@@ -16,8 +15,8 @@ import {
 import 'react-native/tvos-types.d';
 
 const ButtonsWithFocusHandlingExample = () => {
-  const [button1Focused, setButton1Focused] = useState(false);
-  const [button2Focused, setButton2Focused] = useState(false);
+  const [button1Focused, setButton1Focused] = React.useState(false);
+  const [button2Focused, setButton2Focused] = React.useState(false);
   return (
     <SectionContainer title="TV button example with focus handling">
       <RowContainer>

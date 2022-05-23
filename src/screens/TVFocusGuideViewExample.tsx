@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { View, TVFocusGuideView } from 'react-native';
+import {StyleSheet, TVFocusGuideView} from 'react-native';
 
 import {
   Button,
@@ -11,8 +11,6 @@ import {
   SectionContainer,
   Spacer,
 } from '../common/StyledComponents';
-
-import styles from '../common/styles';
 
 import 'react-native/tvos-types.d';
 
@@ -47,51 +45,51 @@ const TVFocusGuideViewExample = () => {
         ) : null}
       </RowContainer>
       <RowContainer>
-        <Button ref={button1Ref} onPress={() => { }}>
+        <Button ref={button1Ref} onPress={() => {}}>
           Button 1
         </Button>
         <Spacer />
-        {focusGuidesAdded ? (
-          <TVFocusGuideView
-            style={
-              focusGuidesVisible
-                ? styles.focusGuideVisible
-                : styles.focusGuideHidden
-            }
-            destinations={
-              focusGuidesAdded && button2Ref?.current
-                ? [button2Ref?.current]
-                : []
-            }
-          />
-        ) : (
-          <View style={styles.emptyFocusGuide} />
-        )}
+        <TVFocusGuideView
+          style={
+            focusGuidesVisible && focusGuidesAdded
+              ? styles.focusGuideVisible
+              : styles.focusGuideHidden
+          }
+          destinations={
+            focusGuidesAdded && button2Ref?.current ? [button2Ref?.current] : []
+          }
+        />
       </RowContainer>
       <RowContainer>
-        {focusGuidesAdded ? (
-          <TVFocusGuideView
-            style={
-              focusGuidesVisible
-                ? styles.focusGuideVisible
-                : styles.focusGuideHidden
-            }
-            destinations={
-              focusGuidesAdded && button1Ref?.current
-                ? [button1Ref?.current]
-                : []
-            }
-          />
-        ) : (
-          <View style={styles.emptyFocusGuide} />
-        )}
+        <TVFocusGuideView
+          style={
+            focusGuidesVisible && focusGuidesAdded
+              ? styles.focusGuideVisible
+              : styles.focusGuideHidden
+          }
+          destinations={
+            focusGuidesAdded && button1Ref?.current ? [button1Ref?.current] : []
+          }
+        />
         <Spacer />
-        <Button ref={button2Ref} onPress={() => { }}>
+        <Button ref={button2Ref} onPress={() => {}}>
           Button 2
         </Button>
       </RowContainer>
     </SectionContainer>
   );
 };
+
+const focusGuideWidth = 50.0;
+
+const styles = StyleSheet.create({
+  focusGuideVisible: {
+    width: focusGuideWidth,
+    backgroundColor: '#ffdddd',
+  },
+  focusGuideHidden: {
+    width: focusGuideWidth,
+  },
+});
 
 export default TVFocusGuideViewExample;

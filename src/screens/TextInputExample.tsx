@@ -3,66 +3,52 @@
  * for more styling control
  */
 
-import React, {useState, useRef} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React from 'react';
 
-import {TextInput} from 'react-native-paper';
-
-import {RowContainer, SectionContainer} from '../common/StyledComponents';
-
-import styles from '../common/styles';
+import {
+  PlainTextInput,
+  RowContainer,
+  SectionContainer,
+  WrappedTextInput,
+} from '../common/StyledComponents';
 
 import 'react-native/tvos-types.d';
 
 const TextInputExample = () => {
-  const [inputText, setInputText] = useState('Dougie MacLowder');
-  const [inputNumber, setInputNumber] = useState('655321');
-  const textInputRef = useRef<any>();
-  const numberInputRef = useRef<any>();
+  const [inputText, setInputText] = React.useState('Dougie MacLowder');
+  const [inputNumber, setInputNumber] = React.useState('655321');
 
   return (
     <SectionContainer title="Text Input">
       <RowContainer>
-        <TextInput
-          autoComplete="off"
+        <PlainTextInput
           label=""
           mode="flat"
-          style={[styles.textInput, styles.container]}
           value={inputText}
-          onChangeText={(src) => setInputText(src)}
+          onChangeText={(src: React.SetStateAction<string>) => {
+            setInputText(src);
+          }}
         />
       </RowContainer>
       <RowContainer>
-        <TouchableOpacity
-          style={styles.container}
-          onPress={() => textInputRef?.current?.focus()}>
-          <TextInput
-            autoComplete="off"
-            ref={textInputRef}
-            label="Full input"
-            style={styles.textInput}
-            mode="outlined"
-            value={inputText}
-            onChangeText={(src) => setInputText(src)}
-          />
-        </TouchableOpacity>
+        <WrappedTextInput
+          label="Full input"
+          value={inputText}
+          onChangeText={(src: React.SetStateAction<string>) => {
+            setInputText(src);
+          }}
+        />
       </RowContainer>
       <RowContainer>
-        <TouchableOpacity
-          style={styles.container}
-          onPress={() => numberInputRef?.current?.focus()}>
-          <TextInput
-            autoComplete="off"
-            ref={numberInputRef}
-            label="Number pad input"
-            style={styles.textInput}
-            mode="outlined"
-            textContentType="telephoneNumber"
-            keyboardType="number-pad"
-            value={inputNumber}
-            onChangeText={(src) => setInputNumber(src)}
-          />
-        </TouchableOpacity>
+        <WrappedTextInput
+          label="Number pad input"
+          textContentType="telephoneNumber"
+          keyboardType="number-pad"
+          value={inputNumber}
+          onChangeText={(src: React.SetStateAction<string>) =>
+            setInputNumber(src)
+          }
+        />
       </RowContainer>
     </SectionContainer>
   );
