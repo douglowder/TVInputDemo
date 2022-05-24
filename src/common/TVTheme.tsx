@@ -1,3 +1,4 @@
+import React from 'react';
 import {DarkTheme, DefaultTheme} from 'react-native-paper';
 import {useColorScheme, Platform, StyleSheet} from 'react-native';
 
@@ -64,7 +65,7 @@ const styleConfig = StyleSheet.create({
   },
 });
 
-const tvTheme = (dark: boolean) => {
+const tvTheme = (dark: boolean): TVTheme => {
   const baseTheme = dark ? DarkTheme : DefaultTheme;
   return {
     ...baseTheme,
@@ -79,9 +80,25 @@ const tvTheme = (dark: boolean) => {
   };
 };
 
-const useTVTheme = (): TVTheme => {
-  const colorScheme = useColorScheme();
-  return tvTheme(colorScheme === 'dark');
+const TVThemeDark = tvTheme(true);
+const TVThemeDefault = tvTheme(false);
+
+const ThemeContext = React.createContext(TVThemeDefault);
+
+const TVThemeProvider = (props: {children: any}) => {
+  const mode = useColorScheme();
+  const theme = mode === 'dark' ? TVThemeDark : TVThemeDefault;
+  return (
+    <ThemeContext.Provider value={theme}>
+      {props.children}
+    </ThemeContext.Provider>
+  );
 };
 
-export {useTVTheme};
+const useTVTheme = (): TVTheme => {
+  const theme = React.useContext(ThemeContext);
+  const result = React.useMemo(() => theme, [theme]);
+  return result;
+};
+
+export {TVThemeProvider, useTVTheme};
