@@ -88,7 +88,10 @@ const Navigation = () => {
         {navigation
           .filter((item) => Platform.OS === 'ios' || item.worksOnAndroid)
           .map((item, i) => (
-            <Button key={item.key} onPress={() => setScreen(item.component)}>
+            <Button
+              mode="contained"
+              key={item.key}
+              onPress={() => setScreen(item.component)}>
               ({i + 1}) {item.title}
             </Button>
           ))}

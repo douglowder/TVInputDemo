@@ -10,19 +10,21 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 import Navigation from './src/Navigation';
 
-import TVTheme from './src/common/TVTheme';
+import {useTVTheme} from './src/common/TVTheme';
 
 import 'react-native/tvos-types.d';
 
 const App = () => {
+  const theme = useTVTheme();
+
   const containerStyle = {
     flex: 1,
-    backgroundColor: TVTheme.colors.surface,
+    backgroundColor: theme.colors.surface,
   };
 
   return (
     <SafeAreaView style={containerStyle}>
-      <PaperProvider theme={TVTheme}>
+      <PaperProvider theme={theme}>
         <Navigation />
       </PaperProvider>
     </SafeAreaView>
