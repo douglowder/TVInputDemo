@@ -25,6 +25,22 @@ const Button = React.forwardRef(
   },
 );
 
+const BackButton = React.forwardRef(
+  (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
+    const {styles} = useTVTheme();
+    return (
+      <Button
+        {...props}
+        ref={ref}
+        mode="contained"
+        style={styles.button}
+        uppercase={false}>
+        {props.children}
+      </Button>
+    );
+  },
+);
+
 const PlainTextInput = (props: React.ComponentProps<any>) => {
   const {styles} = useTVTheme();
   return (
@@ -81,6 +97,7 @@ const SectionContainer = (props: React.ComponentProps<typeof List.Section>) => {
 };
 
 export {
+  BackButton,
   Button,
   PlainTextInput,
   RowContainer,

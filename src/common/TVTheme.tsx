@@ -8,7 +8,8 @@ export type TVTheme = Theme & {
   styles: any;
 };
 
-const fontSize = Platform.isTV && Platform.OS === 'ios' ? 60.0 : 30.0;
+const fontSize =
+  Platform.isTV && Platform.OS === 'ios' ? 60.0 : Platform.isTV ? 30.0 : 15.0;
 
 const fontConfig = (theme: typeof DefaultTheme) => {
   return {

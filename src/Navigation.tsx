@@ -6,7 +6,7 @@
 import React from 'react';
 import {BackHandler, Platform, TVEventControl, View} from 'react-native';
 
-import {Button, SectionContainer} from './common/StyledComponents';
+import {BackButton, Button, SectionContainer} from './common/StyledComponents';
 
 import SimpleButtonExample from './screens/SimpleButtonExample';
 import ButtonsWithFocusHandlingExample from './screens/ButtonsWithFocusHandlingExample';
@@ -15,18 +15,18 @@ import TVFocusGuideViewExample from './screens/TVFocusGuideViewExample';
 import NextFocusExample from './screens/NextFocusExample';
 
 import 'react-native/tvos-types.d';
-
-type NavigationComponent = JSX.Element | null;
+import {useTVTheme} from './common/TVTheme';
 
 type NavigationScreen = {
   key: string;
   title: string;
-  component: NavigationComponent;
+  component: any;
   worksOnAndroid: boolean;
 };
 
-const Navigation = () => {
-  const [screen, setScreen] = React.useState<NavigationComponent>(null);
+const Navigation = (): any => {
+  const [screen, setScreen] = React.useState<any>(null);
+  const {styles} = useTVTheme();
 
   React.useEffect(() => {
     if (screen !== null) {
@@ -80,7 +80,13 @@ const Navigation = () => {
     },
   ];
   if (screen != null) {
-    return screen;
+    return (
+      <View style={styles.container}>
+        {screen}
+        <View style={styles.container} />
+        <BackButton onPress={() => setScreen(null)}>Back</BackButton>
+      </View>
+    );
   }
   return (
     <SectionContainer title="Menu">
