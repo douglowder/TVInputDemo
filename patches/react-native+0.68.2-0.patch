@@ -1,3 +1,39 @@
+diff --git a/node_modules/react-native/Libraries/Components/Pressable/Pressable.js b/node_modules/react-native/Libraries/Components/Pressable/Pressable.js
+index bee1cb9..d1b1858 100644
+--- a/node_modules/react-native/Libraries/Components/Pressable/Pressable.js
++++ b/node_modules/react-native/Libraries/Components/Pressable/Pressable.js
+@@ -39,6 +39,7 @@ import View from '../View/View';
+ import typeof TVParallaxPropertiesType from '../AppleTV/TVViewPropTypes';
+ import Platform from '../../Utilities/Platform';
+ import {tvFocusEventHandler} from '../AppleTV/TVFocusEventHandler';
++import tagForComponentOrHandle from '../AppleTV/tagForComponentOrHandle';
+ 
+ type ViewStyleProp = $ElementType<React.ElementConfig<typeof View>, 'style'>;
+ 
+@@ -212,6 +213,11 @@ function Pressable(props: Props, forwardedRef): React.Node {
+     onHoverIn,
+     onHoverOut,
+     isTVSelectable,
++    nextFocusDown,
++    nextFocusForward,
++    nextFocusLeft,
++    nextFocusRight,
++    nextFocusUp,
+     onBlur,
+     onFocus,
+     onLongPress,
+@@ -354,6 +360,11 @@ function Pressable(props: Props, forwardedRef): React.Node {
+       {...restPropsWithDefaults}
+       {...eventHandlers}
+       ref={viewRef}
++      nextFocusDown={tagForComponentOrHandle(props.nextFocusDown)}
++      nextFocusForward={tagForComponentOrHandle(props.nextFocusForward)}
++      nextFocusLeft={tagForComponentOrHandle(props.nextFocusLeft)}
++      nextFocusRight={tagForComponentOrHandle(props.nextFocusRight)}
++      nextFocusUp={tagForComponentOrHandle(props.nextFocusUp)}
+       isTVSelectable={isTVSelectable !== false && accessible !== false}
+       style={typeof style === 'function' ? style({pressed, focused}) : style}
+       tvParallaxProperties={tvParallaxProperties}
 diff --git a/node_modules/react-native/Libraries/Components/Touchable/TouchableNativeFeedback.js b/node_modules/react-native/Libraries/Components/Touchable/TouchableNativeFeedback.js
 index a470f47..d4e169a 100644
 --- a/node_modules/react-native/Libraries/Components/Touchable/TouchableNativeFeedback.js
@@ -27,3 +63,10 @@ index a470f47..d4e169a 100644
          onLayout: this.props.onLayout,
          testID: this.props.testID,
        },
+diff --git a/node_modules/react-native/scripts/.packager.env b/node_modules/react-native/scripts/.packager.env
+new file mode 100644
+index 0000000..361f5fb
+--- /dev/null
++++ b/node_modules/react-native/scripts/.packager.env
+@@ -0,0 +1 @@
++export RCT_METRO_PORT=8081
