@@ -8,7 +8,7 @@ import {Provider as PaperProvider} from 'react-native-paper';
 
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import Navigation from './src/Navigation';
+import Navigation from './src/navigation/Navigation';
 
 import {TVThemeProvider, useTVTheme} from './src/common/TVTheme';
 
