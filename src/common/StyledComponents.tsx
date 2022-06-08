@@ -9,7 +9,11 @@ import {
   Text as PaperText,
   TextInput as PaperTextInput,
 } from 'react-native-paper';
-import {TouchableOpacity, View} from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Pressable as NativePressable,
+} from 'react-native';
 
 import {useTVTheme} from './TVTheme';
 
@@ -23,6 +27,35 @@ const Button = React.forwardRef(
       <PaperButton {...props} ref={ref} style={styles.button} uppercase={false}>
         {props.children}
       </PaperButton>
+    );
+  },
+);
+
+// Pressable used in the demos
+const Pressable = React.forwardRef(
+  (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
+    const {styles, colors} = useTVTheme();
+    const pressableStyle = (pressed, focused) => [
+      styles.button,
+      {
+        backgroundColor: pressed || focused ? colors.accent : 'transparent',
+        borderRadius: 8,
+      },
+    ];
+    const pressableTextStyle = {color: colors.primary, fontWeight: '500'};
+    return (
+      <NativePressable
+        {...props}
+        ref={ref}
+        style={({pressed, focused}) => pressableStyle(pressed, focused)}>
+        {({}) => {
+          return (
+            <PaperText style={[styles.text, pressableTextStyle]}>
+              {props.children}
+            </PaperText>
+          );
+        }}
+      </NativePressable>
     );
   },
 );
@@ -108,6 +141,7 @@ export {
   BackButton,
   Button,
   PlainTextInput,
+  Pressable,
   RowContainer,
   SectionContainer,
   Spacer,
