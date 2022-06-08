@@ -12,15 +12,11 @@ import routes from './routes';
 
 import 'react-native/tvos-types.d';
 
-type NavigationScreen = {
-  key: string;
-  title: string;
-  component: any;
-  worksOnAndroid: boolean;
-};
-
 const Navigation = (): any => {
+  // Defines which screen (route) we are showing
   const [routeKey, setRouteKey] = React.useState<string | null>(null);
+  // If we have navigated back, this represents the screen we navigated from.
+  // Used to make sure that TV focus defaults to the right button on the home screen.
   const [previousRouteKey, setPreviousRouteKey] = React.useState<string | null>(
     null,
   );
@@ -32,11 +28,15 @@ const Navigation = (): any => {
   };
 
   React.useEffect(() => {
+    // On Apple TV, the menu key must not have an attached gesture handler,
+    // otherwise it will not navigate out of the app back to the Apple TV main screen
+    // as expected by Apple guidelines.
     if (routeKey !== null) {
       TVEventControl.enableTVMenuKey();
     } else {
       TVEventControl.disableTVMenuKey();
     }
+    // Enable back navigation with Apple TV menu key or Android back button
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
       () => {
@@ -46,10 +46,11 @@ const Navigation = (): any => {
         return true;
       },
     );
-
+    // This cleans up the back nav handler on unmount
     return () => backHandler.remove();
   });
 
+  // If one of the example screens is selected, show it
   if (routeKey !== null) {
     return (
       <View style={styles.container}>
@@ -59,6 +60,8 @@ const Navigation = (): any => {
       </View>
     );
   }
+  // Otherwise, show the main navigation screen, and have focus default
+  // to the button that was previously selected (if we have back navigated)
   return (
     <SectionContainer title="Menu">
       <View>

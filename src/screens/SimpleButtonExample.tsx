@@ -1,5 +1,6 @@
 /*
- * Shows two buttons with empty onPress methods
+ * Shows buttons with empty onPress methods.
+ * Also demonstrates setting preferred focus, and the Apple TV parallax properties.
  */
 
 import React from 'react';

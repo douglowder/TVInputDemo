@@ -1,16 +1,28 @@
+/*
+ * Implements a react-native-paper theme provider and hook using React context
+ * Adds our styles to the theme object so those can be picked up by our
+ * styled components.
+ * Switches between dark and light themes with the RN useColorScheme hook.
+ */
+
 import React from 'react';
 import {DarkTheme, DefaultTheme} from 'react-native-paper';
 import {useColorScheme, Platform, StyleSheet} from 'react-native';
 
 type Theme = typeof DefaultTheme;
 
+// Add styles to the theme type
 export type TVTheme = Theme & {
   styles: any;
 };
 
+// This takes care of issues with the different screen sizes on TV platforms and
+// phone platforms.
 const fontSize =
   Platform.isTV && Platform.OS === 'ios' ? 60.0 : Platform.isTV ? 30.0 : 15.0;
 
+// Patch the default react-native-paper font definitions to use our custom
+// font sizing
 const fontConfig = (theme: typeof DefaultTheme) => {
   return {
     regular: {
@@ -32,6 +44,9 @@ const fontConfig = (theme: typeof DefaultTheme) => {
   };
 };
 
+// On Apple TV, the screen is quite large (1920x1080) so we use this to
+// scale up everything on this platform for visibility
+// and for consistency with Android TV
 const scale = Platform.isTV && Platform.OS === 'ios' ? 2.0 : 1.0;
 
 const sizes = {
@@ -42,6 +57,7 @@ const sizes = {
   labelFontSize: 15.0 * scale,
 };
 
+// Now define the styles based on the above sizes
 const styleConfig = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,6 +82,7 @@ const styleConfig = StyleSheet.create({
   },
 });
 
+// Returns the dark or light theme we want for TV
 const tvTheme = (dark: boolean): TVTheme => {
   const baseTheme = dark ? DarkTheme : DefaultTheme;
   return {
@@ -84,6 +101,7 @@ const tvTheme = (dark: boolean): TVTheme => {
 const TVThemeDark = tvTheme(true);
 const TVThemeDefault = tvTheme(false);
 
+// Our React context, provider, and hook
 const ThemeContext = React.createContext(TVThemeDefault);
 
 const TVThemeProvider = (props: {children: any}) => {

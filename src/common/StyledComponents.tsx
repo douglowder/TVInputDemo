@@ -1,5 +1,6 @@
 /*
- * Wrapped Button component using react-native-paper
+ * Wrapped several components to keep app code simpler
+ * Because TV needs focus APIs that use refs, all wrappers use React.forwardRef
  */
 import React from 'react';
 import {
@@ -14,6 +15,7 @@ import {useTVTheme} from './TVTheme';
 
 import 'react-native/tvos-types.d';
 
+// Button used in the demos
 const Button = React.forwardRef(
   (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
     const {styles} = useTVTheme();
@@ -25,6 +27,7 @@ const Button = React.forwardRef(
   },
 );
 
+// Back button used on every screen
 const BackButton = React.forwardRef(
   (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
     const {styles} = useTVTheme();
@@ -41,6 +44,7 @@ const BackButton = React.forwardRef(
   },
 );
 
+// Text input without a touchable wrapper
 const PlainTextInput = (props: React.ComponentProps<any>) => {
   const {styles} = useTVTheme();
   return (
@@ -53,6 +57,7 @@ const PlainTextInput = (props: React.ComponentProps<any>) => {
   );
 };
 
+// Text input with a touchable wrapper to manage focus on TV
 const WrappedTextInput = (props: React.ComponentProps<any>) => {
   const {styles} = useTVTheme();
   const textInputRef = React.useRef<any>();
@@ -72,16 +77,19 @@ const WrappedTextInput = (props: React.ComponentProps<any>) => {
   );
 };
 
+// TV-styled text component
 const Text = (props: React.ComponentProps<typeof PaperText>) => {
   const {styles} = useTVTheme();
   return <PaperText style={styles.text}>{props.children}</PaperText>;
 };
 
+// Just a view to fill in space, used in the focus guide and nextFocus demos
 const Spacer = () => {
   const {styles} = useTVTheme();
   return <View style={styles.spacer} />;
 };
 
+// Wrappers for react-native-paper containers
 const RowContainer = (props: React.ComponentProps<typeof View>) => {
   const {styles} = useTVTheme();
   return <View style={styles.row}>{props.children}</View>;
