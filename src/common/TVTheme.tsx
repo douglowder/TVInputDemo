@@ -8,12 +8,12 @@
 import React from 'react';
 import {DarkTheme, DefaultTheme} from 'react-native-paper';
 import {useColorScheme, Platform, StyleSheet} from 'react-native';
-
+import type {ViewStyle, TextStyle} from 'react-native';
 type Theme = typeof DefaultTheme;
 
 // Add styles to the theme type
 export type TVTheme = Theme & {
-  styles: any;
+  styles: Styles;
 };
 
 // This takes care of issues with the different screen sizes on TV platforms and
@@ -57,8 +57,17 @@ const sizes = {
   labelFontSize: 15.0 * scale,
 };
 
+interface Styles {
+  container: ViewStyle;
+  row: ViewStyle;
+  text: TextStyle;
+  textInput: TextStyle;
+  button: ViewStyle & {uppercaseLabel: boolean};
+  spacer: ViewStyle;
+}
+
 // Now define the styles based on the above sizes
-const styleConfig = StyleSheet.create({
+const styleConfig = StyleSheet.create<Styles>({
   container: {
     flex: 1,
   },

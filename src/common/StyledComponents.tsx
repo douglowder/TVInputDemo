@@ -32,33 +32,33 @@ const Button = React.forwardRef(
 );
 
 // Pressable used in the demos
-const Pressable = React.forwardRef(
-  (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {
-    const {styles, colors} = useTVTheme();
-    const pressableStyle = (pressed, focused) => [
-      styles.button,
-      {
-        backgroundColor: pressed || focused ? colors.accent : 'transparent',
-        borderRadius: 8,
-      },
-    ];
-    const pressableTextStyle = {color: colors.primary, fontWeight: '500'};
-    return (
-      <NativePressable
-        {...props}
-        ref={ref}
-        style={({pressed, focused}) => pressableStyle(pressed, focused)}>
-        {({}) => {
-          return (
-            <PaperText style={[styles.text, pressableTextStyle]}>
-              {props.children}
-            </PaperText>
-          );
-        }}
-      </NativePressable>
-    );
-  },
-);
+const Pressable = React.forwardRef((props: any, ref: any) => {
+  const {styles, colors} = useTVTheme();
+  const label = props.label;
+  const pressableStyle = (pressed: boolean, focused: boolean) => [
+    styles.button,
+    {
+      color: colors.primary,
+      backgroundColor: pressed || focused ? colors.accent : 'transparent',
+      borderRadius: 8,
+    },
+  ];
+  const pressableTextStyle = {color: colors.primary, fontWeight: '500'};
+  return (
+    <NativePressable
+      {...props}
+      ref={ref}
+      style={({pressed, focused}) => pressableStyle(pressed, focused)}>
+      {({pressed, focused}) => {
+        return (
+          <PaperText style={pressableTextStyle}>
+            {label(pressed, focused)}
+          </PaperText>
+        );
+      }}
+    </NativePressable>
+  );
+});
 
 // Back button used on every screen
 const BackButton = React.forwardRef(

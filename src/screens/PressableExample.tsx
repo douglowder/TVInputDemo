@@ -23,14 +23,18 @@ const PressableExample = () => {
         <Pressable
           onPress={() => {}}
           onFocus={() => setButton1Focused(true)}
-          onBlur={() => setButton1Focused(false)}>
-          Pressable 1
-        </Pressable>
+          onBlur={() => setButton1Focused(false)}
+          label={(pressed: boolean, focused: boolean) => {
+            return pressed || focused
+              ? 'Pressable 1 highlighted'
+              : 'Pressable 1';
+          }}
+        />
         <Pressable
           onFocus={() => setButton2Focused(true)}
-          onBlur={() => setButton2Focused(false)}>
-          Pressable 2
-        </Pressable>
+          onBlur={() => setButton2Focused(false)}
+          label={() => 'Pressable 2'}
+        />
       </RowContainer>
       <Text>Pressable 1 is {button1Focused ? 'focused' : 'not focused'}</Text>
       <Text>Pressable 2 is {button2Focused ? 'focused' : 'not focused'}</Text>
