@@ -14,6 +14,7 @@ type Theme = typeof DefaultTheme;
 // Add styles to the theme type
 export type TVTheme = Theme & {
   styles: Styles;
+  sizes: any;
 };
 
 // This takes care of issues with the different screen sizes on TV platforms and
@@ -55,6 +56,8 @@ const sizes = {
   textPadding: 10.0 * scale,
   spacerWidth: 250.0 * scale,
   labelFontSize: 15.0 * scale,
+  headerFontSize: 30.0 * scale,
+  headerHeight: 60.0 * scale,
 };
 
 interface Styles {
@@ -103,6 +106,7 @@ const tvTheme = (dark: boolean): TVTheme => {
       accent: dark ? '#0000ff' : '#ccccff',
     },
     fonts: fontConfig(baseTheme),
+    sizes,
     styles: styleConfig,
   };
 };

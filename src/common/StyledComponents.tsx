@@ -43,7 +43,10 @@ const Pressable = React.forwardRef((props: any, ref: any) => {
       borderRadius: 8,
     },
   ];
-  const pressableTextStyle = {color: colors.primary, fontWeight: '500'};
+  const pressableTextStyle: any = {
+    color: colors.primary,
+    fontWeight: '500',
+  };
   return (
     <NativePressable
       {...props}
@@ -131,7 +134,7 @@ const RowContainer = (props: React.ComponentProps<typeof View>) => {
 const SectionContainer = (props: React.ComponentProps<typeof List.Section>) => {
   const {styles} = useTVTheme();
   return (
-    <List.Section title={props.title} titleStyle={styles.titleStyle}>
+    <List.Section title={props.title} titleStyle={styles.text}>
       {props.children}
     </List.Section>
   );
