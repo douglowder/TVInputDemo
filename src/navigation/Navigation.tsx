@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import {BackHandler, Platform, TVEventControl, View} from 'react-native';
+import {BackHandler, TVEventControl, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 

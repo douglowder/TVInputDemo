@@ -104,6 +104,7 @@ const tvTheme = (dark: boolean): TVTheme => {
       ...baseTheme.colors,
       primary: dark ? '#ccccff' : '#0000ff',
       accent: dark ? '#0000ff' : '#ccccff',
+      notification: dark ? '#330000' : '#ffcccc',
     },
     fonts: fontConfig(baseTheme),
     sizes,
