@@ -23,7 +23,6 @@ const HomeScreen = (props: {navigation: any}) => {
           .map((item) => {
             return {...routes[item], key: item};
           })
-          .filter((item) => Platform.OS === 'ios' || item.worksOnAndroid)
           .map((item, i) => (
             <Button
               mode="contained"
@@ -74,9 +73,21 @@ const Navigation = (): any => {
   const headerOptions = {
     headerShown: false,
   };
+  const {colors, dark} = useTVTheme();
+  const navigationTheme = {
+    dark,
+    colors: {
+      primary: colors.primary,
+      background: colors.background,
+      card: colors.backdrop,
+      text: colors.text,
+      border: colors.surface,
+      notification: colors.error,
+    },
+  };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
@@ -87,10 +98,10 @@ const Navigation = (): any => {
           .map((item) => {
             return {...routes[item], key: item};
           })
-          .filter((item) => Platform.OS === 'ios' || item.worksOnAndroid)
           .map((item) => (
             <Stack.Screen
               name={item.key}
+              key={item.key}
               component={ExampleScreen}
               options={headerOptions}
             />
