@@ -15,8 +15,8 @@ import 'react-native/tvos-types.d';
 
 const NextFocusExample = () => {
   // Hold refs to the two buttons in states
-  const [left, setLeft] = React.useState(null);
-  const [right, setRight] = React.useState(null);
+  const [left, setLeft] = React.useState(undefined);
+  const [right, setRight] = React.useState(undefined);
 
   // We enable both nextFocusLeft and nextFocusRight for the buttons,
   // so that either left or right arrow/swipe will take us to the other button

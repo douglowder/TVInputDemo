@@ -16,6 +16,25 @@ import 'react-native/tvos-types.d';
 
 const HomeScreen = (props: {navigation: any}) => {
   const {navigation} = props;
+
+  // State used to track which screen was last navigated to, and set
+  // TV focus to the button for that screen when navigating back home
+  const [lastScreen, setLastScreen] = React.useState('');
+  const [needPreferredFocus, setNeedPreferredFocus] = React.useState(false);
+
+  React.useEffect(() => {
+    const unsubscribeFocus = navigation.addListener('focus', () => {
+      setNeedPreferredFocus(true);
+    });
+    const unsubscribeBlur = navigation.addListener('blur', () => {
+      setNeedPreferredFocus(false);
+    });
+    return () => {
+      unsubscribeFocus();
+      unsubscribeBlur();
+    };
+  }, [navigation]);
+
   return (
     <SectionContainer title="Menu">
       <View>
@@ -25,8 +44,19 @@ const HomeScreen = (props: {navigation: any}) => {
           })
           .map((item, i) => (
             <Button
+              hasTVPreferredFocus={
+                needPreferredFocus && lastScreen === item.key
+              }
               mode="contained"
               key={item.key}
+              onFocus={() => {
+                // Once a button is focused, we no longer need to have
+                // preferred focus set.
+                setNeedPreferredFocus(false);
+                // When button is focused, set last screen to its key,
+                // so focus will come here again on back navigation
+                setLastScreen(item.key);
+              }}
               onPress={() => navigation.navigate(item.key)}>
               ({i + 1}) {item.title}
             </Button>
@@ -74,6 +104,7 @@ const Navigation = (): any => {
     headerShown: false,
   };
   const {colors, dark} = useTVTheme();
+
   const navigationTheme = {
     dark,
     colors: {
