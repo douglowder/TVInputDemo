@@ -6,8 +6,13 @@ import TextInputExample from '../screens/TextInputExample';
 import TVFocusGuideViewExample from '../screens/TVFocusGuideViewExample';
 import NextFocusExample from '../screens/NextFocusExample';
 import PressableExample from '../screens/PressableExample';
+import VideoExample from '../screens/VideoExample';
 
 const routes: any = {
+  VideoExample: {
+    title: 'Video example',
+    component: <VideoExample />,
+  },
   SimpleButtonExample: {
     title: 'Simple button example',
     component: <SimpleButtonExample />,

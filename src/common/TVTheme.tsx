@@ -20,7 +20,7 @@ export type TVTheme = Theme & {
 // This takes care of issues with the different screen sizes on TV platforms and
 // phone platforms.
 const fontSize =
-  Platform.isTV && Platform.OS === 'ios' ? 60.0 : Platform.isTV ? 30.0 : 15.0;
+  Platform.isTV && Platform.OS === 'ios' ? 40.0 : Platform.isTV ? 20.0 : 15.0;
 
 // Patch the default react-native-paper font definitions to use our custom
 // font sizing

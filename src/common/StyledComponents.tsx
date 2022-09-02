@@ -10,6 +10,7 @@ import {
   TextInput as PaperTextInput,
 } from 'react-native-paper';
 import {
+  StyleSheet,
   TouchableOpacity,
   View,
   Pressable as NativePressable,
@@ -30,6 +31,38 @@ const Button = React.forwardRef(
     );
   },
 );
+
+// Progress bar
+const ProgressBar = (props: any) => {
+  const {colors} = useTVTheme();
+  const progressBarStyles = StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      width: '100%',
+      height: 20,
+      borderWidth: 1,
+      borderColor: colors.primary,
+    },
+    left: {
+      backgroundColor: colors.primary,
+      flexDirection: 'row',
+      height: '100%',
+      flex: props?.fractionComplete || 0.0,
+    },
+    right: {
+      backgroundColor: colors.background,
+      flexDirection: 'row',
+      height: '100%',
+      flex: 1.0 - props?.fractionComplete || 1.0,
+    },
+  });
+  return (
+    <View style={progressBarStyles.container}>
+      <View style={progressBarStyles.left} />
+      <View style={progressBarStyles.right} />
+    </View>
+  );
+};
 
 // Pressable used in the demos
 const Pressable = React.forwardRef((props: any, ref: any) => {
@@ -144,6 +177,7 @@ export {
   BackButton,
   Button,
   PlainTextInput,
+  ProgressBar,
   Pressable,
   RowContainer,
   SectionContainer,
