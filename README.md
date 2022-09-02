@@ -11,6 +11,7 @@ A demo project for [React Native for TV](https://github.com/react-native-tvos/re
 - React Native for TV focus management APIs (`TVFocusGuideView`, `nextFocus`, `hasTVPreferredFocus`)
 - Apple TV menu key enablement with `TVEventControl`
 - Dark/light theming with `useColorScheme()` and React context
+- (NEW) Video demo using [React Native Video](https://github.com/react-native-video/react-native-video)
 
 ### Third party frameworks used
 
