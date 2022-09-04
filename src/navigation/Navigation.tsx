@@ -14,13 +14,14 @@ import {routes, componentForRoute} from './routes';
 
 import 'react-native/tvos-types.d';
 import useNavigationFocus from './useNavigationFocus';
+import {LastScreenProvider, useLastScreen} from './LastScreen';
 
 const HomeScreen = (props: {navigation: any}) => {
   const {navigation} = props;
 
   // State used to track which screen was last navigated to, and set
   // TV focus to the button for that screen when navigating back home
-  const [lastScreen, setLastScreen] = React.useState('');
+  const {lastScreen} = useLastScreen();
   const [needPreferredFocus, setNeedPreferredFocus] = React.useState(false);
 
   useNavigationFocus(navigation, setNeedPreferredFocus);
@@ -39,14 +40,6 @@ const HomeScreen = (props: {navigation: any}) => {
               }
               mode="contained"
               key={item.key}
-              onFocus={() => {
-                // Once a button is focused, we no longer need to have
-                // preferred focus set.
-                setNeedPreferredFocus(false);
-                // When button is focused, set last screen to its key,
-                // so focus will come here again on back navigation
-                setLastScreen(item.key);
-              }}
               onPress={() => navigation.navigate(item.key)}>
               ({i + 1}) {item.title}
             </Button>
@@ -59,7 +52,10 @@ const HomeScreen = (props: {navigation: any}) => {
 const ExampleScreen = (props: {navigation: any; route: any}) => {
   const {navigation, route} = props;
   const {styles} = useTVTheme();
+  const {setLastScreen} = useLastScreen();
   React.useEffect(() => {
+    // Set last screen context for the home navigation screen
+    setLastScreen(route.name);
     // On Apple TV, the menu key must not have an attached gesture handler,
     // otherwise it will not navigate out of the app back to the Apple TV main screen
     // as expected by Apple guidelines.
@@ -107,27 +103,31 @@ const Navigation = (): any => {
     },
   };
 
+  const [lastScreen, setLastScreen] = React.useState('');
+
   return (
     <NavigationContainer theme={navigationTheme}>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={headerOptions}
-        />
-        {Object.keys(routes)
-          .map((item) => {
-            return {...routes[item], key: item};
-          })
-          .map((item) => (
-            <Stack.Screen
-              name={item.key}
-              key={item.key}
-              component={ExampleScreen}
-              options={headerOptions}
-            />
-          ))}
-      </Stack.Navigator>
+      <LastScreenProvider value={{lastScreen, setLastScreen}}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={headerOptions}
+          />
+          {Object.keys(routes)
+            .map((item) => {
+              return {...routes[item], key: item};
+            })
+            .map((item) => (
+              <Stack.Screen
+                name={item.key}
+                key={item.key}
+                component={ExampleScreen}
+                options={headerOptions}
+              />
+            ))}
+        </Stack.Navigator>
+      </LastScreenProvider>
     </NavigationContainer>
   );
 };
