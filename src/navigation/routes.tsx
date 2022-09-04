@@ -9,34 +9,46 @@ import PressableExample from '../screens/PressableExample';
 import VideoExample from '../screens/VideoExample';
 
 const routes: any = {
-  VideoExample: {
-    title: 'Video example',
-    component: <VideoExample />,
-  },
   SimpleButtonExample: {
     title: 'Simple button example',
-    component: <SimpleButtonExample />,
   },
   ButtonsWithFocusHandlingExample: {
     title: 'Buttons with focus and blur handling',
-    component: <ButtonsWithFocusHandlingExample />,
   },
   PressableExample: {
     title: 'Pressable example',
-    component: <PressableExample />,
   },
   TextInputExample: {
     title: 'Text input example',
-    component: <TextInputExample />,
   },
   TVFocusGuideViewExample: {
     title: 'TVFocusGuideView example',
-    component: <TVFocusGuideViewExample />,
   },
   NextFocusExample: {
     title: 'nextFocus API example',
-    component: <NextFocusExample />,
+  },
+  VideoExample: {
+    title: 'Video example',
   },
 };
 
-export default routes;
+const componentForRoute = (routeKey: string, props: any) => {
+  switch (routeKey) {
+    case 'SimpleButtonExample':
+      return <SimpleButtonExample {...props} />;
+    case 'ButtonsWithFocusHandlingExample':
+      return <ButtonsWithFocusHandlingExample {...props} />;
+    case 'PressableExample':
+      return <PressableExample {...props} />;
+    case 'TextInputExample':
+      return <TextInputExample {...props} />;
+    case 'TVFocusGuideViewExample':
+      return <TVFocusGuideViewExample {...props} />;
+    case 'NextFocusExample':
+      return <NextFocusExample {...props} />;
+    case 'VideoExample':
+      return <VideoExample {...props} />;
+  }
+};
+
+export {routes, componentForRoute};

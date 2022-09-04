@@ -10,9 +10,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import {BackButton, Button, SectionContainer} from '../common/StyledComponents';
 import {useTVTheme} from '../common/TVTheme';
-import routes from './routes';
+import {routes, componentForRoute} from './routes';
 
 import 'react-native/tvos-types.d';
+import useNavigationFocus from './useNavigationFocus';
 
 const HomeScreen = (props: {navigation: any}) => {
   const {navigation} = props;
@@ -22,18 +23,7 @@ const HomeScreen = (props: {navigation: any}) => {
   const [lastScreen, setLastScreen] = React.useState('');
   const [needPreferredFocus, setNeedPreferredFocus] = React.useState(false);
 
-  React.useEffect(() => {
-    const unsubscribeFocus = navigation.addListener('focus', () => {
-      setNeedPreferredFocus(true);
-    });
-    const unsubscribeBlur = navigation.addListener('blur', () => {
-      setNeedPreferredFocus(false);
-    });
-    return () => {
-      unsubscribeFocus();
-      unsubscribeBlur();
-    };
-  }, [navigation]);
+  useNavigationFocus(navigation, setNeedPreferredFocus);
 
   return (
     <SectionContainer title="Menu">
@@ -90,7 +80,7 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   });
   return (
     <View style={styles.container}>
-      {routes[route.name].component}
+      {componentForRoute(route.name, {navigation})}
       <View style={styles.container} />
       <BackButton onPress={() => navigation.goBack()}>Back</BackButton>
     </View>

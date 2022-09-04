@@ -10,68 +10,78 @@ import {
   SectionContainer,
 } from '../common/StyledComponents';
 
+import useNavigationFocus from '../navigation/useNavigationFocus';
+
 import {Platform, StyleSheet, View, useTVEventHandler} from 'react-native';
 
 import Video from 'react-native-video';
 
 import 'react-native/tvos-types.d';
 
-const VideoExample = React.forwardRef(({}, ref: React.ForwardedRef<any>) => {
-  const [volume, setVolume] = React.useState(1.0);
-  const [duration, setDuration] = React.useState(0.0);
-  const [currentTime, setCurrentTime] = React.useState(0.0);
-  const [paused, setPaused] = React.useState(true);
+const VideoExample = React.forwardRef(
+  ({navigation}: {navigation: any}, ref: React.ForwardedRef<any>) => {
+    const [volume, setVolume] = React.useState(1.0);
+    const [duration, setDuration] = React.useState(0.0);
+    const [currentTime, setCurrentTime] = React.useState(0.0);
+    const [paused, setPaused] = React.useState(true);
 
-  const players: any = {};
+    const [hasNavigationFocus, setHasNavigationFocus] = React.useState(false);
 
-  useTVEventHandler((evt) => {
-    if (evt && evt.eventType === 'playPause') {
-      setPaused(!paused);
-    }
-  });
+    useNavigationFocus(navigation, setHasNavigationFocus);
 
-  const onLoad = (data: any) => {
-    setDuration(data.duration);
-  };
+    const players: any = {};
 
-  const onProgress = (data: any) => {
-    setCurrentTime(data.currentTime);
-  };
+    useTVEventHandler((evt) => {
+      if (evt && evt.eventType === 'playPause') {
+        setPaused(!paused);
+      }
+    });
 
-  const currentTimePercentage = () =>
-    currentTime > 0 ? currentTime / duration : 0;
+    const onLoad = (data: any) => {
+      setDuration(data.duration);
+    };
 
-  return (
-    <SectionContainer title="Video example">
-      <View style={styles.videoContainer}>
-        <Video
-          ref={(r: Video) => (players[ref] = r)}
-          source={require('../../assets/bach-handel-corelli.mp4')}
-          style={styles.video}
-          rate={1}
-          volume={volume}
-          muted={false}
-          paused={paused}
-          onLoad={onLoad}
-          onProgress={onProgress}
-          onEnd={() => {}}
-          repeat={true}
-          resizeMode="contain"
-        />
-        <View style={styles.generalControls}>
-          <Button onPress={() => setPaused(!paused)}>
-            {paused ? 'Play' : 'Pause'}
-          </Button>
-          <Button onPress={() => players[ref].seek(0)}>Rewind</Button>
-          <Button onPress={() => setVolume(0.0)}>No volume</Button>
-          <Button onPress={() => setVolume(0.5)}>Half volume</Button>
-          <Button onPress={() => setVolume(1.0)}>Full volume</Button>
+    const onProgress = (data: any) => {
+      setCurrentTime(data.currentTime);
+    };
+
+    const currentTimePercentage = () =>
+      currentTime > 0 ? currentTime / duration : 0;
+
+    return (
+      <SectionContainer title="Video example">
+        <View style={styles.videoContainer}>
+          <Video
+            ref={(r: Video) => (players[ref] = r)}
+            source={require('../../assets/bach-handel-corelli.mp4')}
+            style={styles.video}
+            rate={1}
+            volume={volume}
+            muted={false}
+            paused={paused}
+            onLoad={onLoad}
+            onProgress={onProgress}
+            onEnd={() => {}}
+            repeat={true}
+            resizeMode="contain"
+          />
+          <View style={styles.generalControls}>
+            <Button
+              hasTVPreferredFocus={hasNavigationFocus}
+              onPress={() => setPaused(!paused)}>
+              {paused ? 'Play' : 'Pause'}
+            </Button>
+            <Button onPress={() => players[ref].seek(0)}>Rewind</Button>
+            <Button onPress={() => setVolume(0.0)}>No volume</Button>
+            <Button onPress={() => setVolume(0.5)}>Half volume</Button>
+            <Button onPress={() => setVolume(1.0)}>Full volume</Button>
+          </View>
         </View>
-      </View>
-      <ProgressBar fractionComplete={currentTimePercentage()} />
-    </SectionContainer>
-  );
-});
+        <ProgressBar fractionComplete={currentTimePercentage()} />
+      </SectionContainer>
+    );
+  },
+);
 
 export default VideoExample;
 
