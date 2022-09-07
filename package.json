@@ -12,7 +12,8 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@react-navigation/native": "^6.0.10",
+    "@react-navigation/native": "^6.0.12",
+    "@react-navigation/native-stack": "^6.8.0",
     "@react-navigation/stack": "^6.2.1",
     "@types/react-native-video": "^5.0.14",
     "patch-package": "^6.4.7",
@@ -22,7 +23,7 @@
     "react-native-paper": "^4.12.1",
     "react-native-reanimated": "^2.8.0",
     "react-native-safe-area-context": "^4.2.4",
-    "react-native-screens": "^3.13.1",
+    "react-native-screens": "^3.17.0",
     "react-native-vector-icons": "^9.1.0",
     "react-native-video": "^5.2.0"
   },

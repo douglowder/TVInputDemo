@@ -6,7 +6,8 @@
 import React from 'react';
 import {BackHandler, TVEventControl, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+//import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {BackButton, Button, SectionContainer} from '../common/StyledComponents';
 import {useTVTheme} from '../common/TVTheme';
@@ -83,7 +84,7 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   );
 };
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const Navigation = (): any => {
   const headerOptions = {

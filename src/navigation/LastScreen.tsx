@@ -1,7 +1,7 @@
 import React from 'react';
 
 const LastScreenContext = React.createContext({
-  lastScreen: '',
+  lastScreen: 'PressableExample',
   setLastScreen: (_lastScreen: string) => {},
 });
 
