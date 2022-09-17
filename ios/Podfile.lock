@@ -206,10 +206,10 @@ PODS:
     - RCTTypeSafety
     - React
     - ReactCommon/turbomodule/core
-  - react-native-video (5.2.0):
+  - react-native-video (5.2.1):
     - React-Core
-    - react-native-video/Video (= 5.2.0)
-  - react-native-video/Video (5.2.0):
+    - react-native-video/Video (= 5.2.1)
+  - react-native-video/Video (5.2.1):
     - React-Core
   - React-perflogger (0.69.5-0)
   - React-RCTAnimation (0.69.5-0):
@@ -442,7 +442,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 7cf7dee8de0ce6d02d390f540dee944facfa0c83
   React-logger: 2702835a608041f47038111f9262a81491a24796
   react-native-safe-area-context: ebf8c413eb8b5f7c392a036a315eb7b46b96845f
-  react-native-video: a4c2635d0802f983594b7057e1bce8f442f0ad28
+  react-native-video: c26780b224543c62d5e1b2a7244a5cd1b50e8253
   React-perflogger: cd5eace3e0f728487ec148b68b0defea8046651f
   React-RCTAnimation: 43df1f089d97fa872447d0e75a3f7c03c9f0f435
   React-RCTBlob: c9c680d1dff6be830a90d398bac6d5f9422c950d
