@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 0.60.0"
+    "version": ">= 0.60.0",
+    "promptToConfigurePushNotifications": false
   },
   "build": {
     "development": {
@@ -17,7 +18,6 @@
         "buildType": "apk"
       },
       "ios": {
-        "simulator": true,
         "scheme": "TVInputDemo"
       },
       "distribution": "internal"
@@ -27,14 +27,32 @@
         "buildType": "apk"
       },
       "ios": {
+        "scheme": "TVInputDemo-tvOS"
+      },
+      "distribution": "internal"
+    },
+    "previewtvsim": {
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {
         "simulator": true,
         "scheme": "TVInputDemo-tvOS"
       },
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "ios": {
+        "scheme": "TVInputDemo-tvOS"
+      }
+    }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "ascAppId": "6443614908",
+        "bundleIdentifier": "com.douglowderexpo.TVInputDemo-tvOS"
+      }
+    }
   }
 }
