@@ -18,7 +18,7 @@
     "@types/react-native-video": "^5.0.14",
     "patch-package": "^6.4.7",
     "react": "18.0.0",
-    "react-native": "npm:react-native-tvos@0.69.5-0",
+    "react-native": "npm:react-native-tvos@0.69.5-1",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-paper": "^4.12.1",
     "react-native-reanimated": "2.8.0",

@@ -51,20 +51,23 @@ const VideoExample = React.forwardRef(
     return (
       <SectionContainer title="Video example">
         <View style={styles.videoContainer}>
-          <Video
-            ref={(r: Video) => (players[ref] = r)}
-            source={require('../../assets/bach-handel-corelli.mp4')}
-            style={styles.video}
-            rate={1}
-            volume={volume}
-            muted={false}
-            paused={paused}
-            onLoad={onLoad}
-            onProgress={onProgress}
-            onEnd={() => {}}
-            repeat={true}
-            resizeMode="contain"
-          />
+          <View>
+            <Video
+              ref={(r: Video) => (players[ref] = r)}
+              source={require('../../assets/bach-handel-corelli.mp4')}
+              style={styles.video}
+              rate={1}
+              volume={volume}
+              muted={false}
+              paused={paused}
+              onLoad={onLoad}
+              onProgress={onProgress}
+              onEnd={() => {}}
+              repeat={true}
+              resizeMode="contain"
+            />
+            <ProgressBar fractionComplete={currentTimePercentage()} />
+          </View>
           <View style={styles.generalControls}>
             <Button
               hasTVPreferredFocus={hasNavigationFocus}
@@ -77,7 +80,6 @@ const VideoExample = React.forwardRef(
             <Button onPress={() => setVolume(1.0)}>Full volume</Button>
           </View>
         </View>
-        <ProgressBar fractionComplete={currentTimePercentage()} />
       </SectionContainer>
     );
   },

@@ -4,18 +4,65 @@
  */
 
 import React from 'react';
-import {BackHandler, TVEventControl, View} from 'react-native';
+import {
+  BackHandler,
+  Modal,
+  StyleSheet,
+  TVEventControl,
+  View,
+} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 //import {createStackNavigator} from '@react-navigation/stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {BackButton, Button, SectionContainer} from '../common/StyledComponents';
+import {
+  BackButton,
+  Button,
+  SectionContainer,
+  Text,
+} from '../common/StyledComponents';
 import {useTVTheme} from '../common/TVTheme';
 import {routes, componentForRoute} from './routes';
 
 import 'react-native/tvos-types.d';
 import useNavigationFocus from './useNavigationFocus';
 import {LastScreenProvider, useLastScreen} from './LastScreen';
+
+const About = () => {
+  const [modalShown, setModalShown] = React.useState(false);
+  const {colors} = useTVTheme();
+
+  const modalStyle = {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.background,
+    opacity: 0.95,
+  };
+
+  return (
+    <View>
+      <Button onPress={() => setModalShown(!modalShown)}>About</Button>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalShown}
+        onRequestClose={() => setModalShown(false)}>
+        <View style={modalStyle}>
+          <SectionContainer title="About">
+            <Text>
+              A demo of various APIs and components provided by React Native for
+              TV.
+            </Text>
+            <Button mode="contained" onPress={() => setModalShown(false)}>
+              Dismiss
+            </Button>
+          </SectionContainer>
+        </View>
+      </Modal>
+    </View>
+  );
+};
 
 const HomeScreen = (props: {navigation: any}) => {
   const {navigation} = props;
@@ -28,7 +75,7 @@ const HomeScreen = (props: {navigation: any}) => {
   useNavigationFocus(navigation, setNeedPreferredFocus);
 
   return (
-    <SectionContainer title="Menu">
+    <SectionContainer title="">
       <View>
         {Object.keys(routes)
           .map((item) => {
@@ -88,7 +135,10 @@ const Stack = createNativeStackNavigator();
 
 const Navigation = (): any => {
   const headerOptions = {
-    headerShown: false,
+    headerShown: true,
+    title: 'React Native TV demo',
+    headerLeft: () => <View />,
+    headerRight: () => <About />,
   };
   const {colors, dark} = useTVTheme();
 
@@ -124,7 +174,7 @@ const Navigation = (): any => {
                 name={item.key}
                 key={item.key}
                 component={ExampleScreen}
-                options={headerOptions}
+                options={{headerShown: false}}
               />
             ))}
         </Stack.Navigator>
@@ -134,3 +184,11 @@ const Navigation = (): any => {
 };
 
 export default Navigation;
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    paddingVertical: 30,
+  },
+});
