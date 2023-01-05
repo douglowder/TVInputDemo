@@ -16,13 +16,13 @@ import useNavigationFocus from '../navigation/useNavigationFocus';
 
 const SimpleButtonExample = (props: {navigation: any}) => {
   const {navigation} = props;
-  const [focused, setFocused] = React.useState(false);
-  useNavigationFocus(navigation, setFocused);
+  const [navFocused, setNavFocused] = React.useState(false);
+  useNavigationFocus(navigation, setNavFocused);
   return (
     <SectionContainer title="TV button example">
       <RowContainer>
         <Button>Button 1</Button>
-        <Button hasTVPreferredFocus={focused}>
+        <Button hasTVPreferredFocus={navFocused}>
           Button 2 gets preferred focus
         </Button>
         <Button tvParallaxProperties={{magnification: 1.1}}>

@@ -83,6 +83,7 @@ const Pressable = React.forwardRef((props: any, ref: any) => {
   return (
     <NativePressable
       {...props}
+      hasTVPreferredFocus={props.hasTVPreferredFocus}
       ref={ref}
       style={({pressed, focused}) => pressableStyle(pressed, focused)}>
       {({pressed, focused}) => {
