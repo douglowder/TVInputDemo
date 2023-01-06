@@ -18,7 +18,7 @@
     "@types/react-native-video": "^5.0.14",
     "patch-package": "^6.4.7",
     "react": "18.0.0",
-    "react-native": "npm:react-native-tvos@0.69.5-1",
+    "react-native": "npm:react-native-tvos@0.69.6-1",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-paper": "^4.12.1",
     "react-native-reanimated": "2.8.0",
@@ -37,7 +37,7 @@
     "babel-jest": "^26.6.3",
     "eslint": "^7.32.0",
     "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.67.0",
+    "metro-react-native-babel-preset": "^0.70.3",
     "react-test-renderer": "^18.2.0",
     "typescript": "^3.8.3"
   },
