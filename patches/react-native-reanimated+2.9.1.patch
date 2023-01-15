@@ -1,5 +1,18 @@
+diff --git a/node_modules/react-native-reanimated/RNReanimated.podspec b/node_modules/react-native-reanimated/RNReanimated.podspec
+index 33ea1c6..29a3f5b 100644
+--- a/node_modules/react-native-reanimated/RNReanimated.podspec
++++ b/node_modules/react-native-reanimated/RNReanimated.podspec
+@@ -60,7 +60,7 @@ Pod::Spec.new do |s|
+   s.license      = "MIT"
+   # s.license    = { :type => "MIT", :file => "FILE_LICENSE" }
+   s.author       = { "author" => "author@domain.cn" }
+-  s.platforms    = { :ios => "9.0", :tvos => "9.0" }
++  s.platforms    = { :ios => "12.0", :tvos => "12.0" }
+   s.source       = { :git => "https://github.com/software-mansion/react-native-reanimated.git", :tag => "#{s.version}" }
+ 
+   s.source_files = [
 diff --git a/node_modules/react-native-reanimated/android/build.gradle b/node_modules/react-native-reanimated/android/build.gradle
-index cc460da..ed66f68 100644
+index dfb79c8..c2dfc64 100644
 --- a/node_modules/react-native-reanimated/android/build.gradle
 +++ b/node_modules/react-native-reanimated/android/build.gradle
 @@ -131,7 +131,9 @@ abstract class replaceSoTask extends DefaultTask {
@@ -1437,8 +1450,7 @@ index 0000000..a8c863b
 +o/jetified-react-native-reanimated-68-jsc-api.jar
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/3046df45e251ed9a8b5fa9b018aecf42/transformed/jetified-react-native-reanimated-68-jsc-api.jar b/node_modules/react-native-reanimated/android/build/.transforms/3046df45e251ed9a8b5fa9b018aecf42/transformed/jetified-react-native-reanimated-68-jsc-api.jar
 new file mode 100644
-index 0000000..1cf8fa5
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/3046df45e251ed9a8b5fa9b018aecf42/transformed/jetified-react-native-reanimated-68-jsc-api.jar differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/3b202a2c4704156d814def40981831fe/results.bin b/node_modules/react-native-reanimated/android/build/.transforms/3b202a2c4704156d814def40981831fe/results.bin
 new file mode 100644
 index 0000000..e69de29
@@ -1454,8 +1466,7 @@ index 0000000..d109789
 +o/jetified-react-native-reanimated-68-jsc.aar
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/47f023b07136064ef26b1fd130973396/transformed/jetified-react-native-reanimated-68-jsc.aar b/node_modules/react-native-reanimated/android/build/.transforms/47f023b07136064ef26b1fd130973396/transformed/jetified-react-native-reanimated-68-jsc.aar
 new file mode 100644
-index 0000000..4be1535
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/47f023b07136064ef26b1fd130973396/transformed/jetified-react-native-reanimated-68-jsc.aar differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/5b8279be962bae125ee1e830f4efecc8/results.bin b/node_modules/react-native-reanimated/android/build/.transforms/5b8279be962bae125ee1e830f4efecc8/results.bin
 new file mode 100644
 index 0000000..e69de29
@@ -1468,8 +1479,7 @@ index 0000000..2154f81
 +o/jetified-react-native-reanimated-68-jsc-runtime.jar
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/5efcc56e7469f57bdb69f80ab58f87da/transformed/jetified-react-native-reanimated-68-jsc-runtime.jar b/node_modules/react-native-reanimated/android/build/.transforms/5efcc56e7469f57bdb69f80ab58f87da/transformed/jetified-react-native-reanimated-68-jsc-runtime.jar
 new file mode 100644
-index 0000000..7373e5e
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/5efcc56e7469f57bdb69f80ab58f87da/transformed/jetified-react-native-reanimated-68-jsc-runtime.jar differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/5f2a4d3b78ec96f6143d84f6942ee77f/results.bin b/node_modules/react-native-reanimated/android/build/.transforms/5f2a4d3b78ec96f6143d84f6942ee77f/results.bin
 new file mode 100644
 index 0000000..c626d1b
@@ -1489,8 +1499,7 @@ index 0000000..b920ac2
 +o/jetified-react-native-reanimated-68-jsc-runtime
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/8a9a3014566bef99f0ef86e8100f6ab5/transformed/jetified-react-native-reanimated-68-jsc-runtime/classes.dex b/node_modules/react-native-reanimated/android/build/.transforms/8a9a3014566bef99f0ef86e8100f6ab5/transformed/jetified-react-native-reanimated-68-jsc-runtime/classes.dex
 new file mode 100644
-index 0000000..f1d195c
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/8a9a3014566bef99f0ef86e8100f6ab5/transformed/jetified-react-native-reanimated-68-jsc-runtime/classes.dex differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/results.bin b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/results.bin
 new file mode 100644
 index 0000000..d098bc7
@@ -3400,24 +3409,19 @@ index 0000000..9bfb440
 +int xml rn_dev_preferences 0x0
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jars/classes.jar b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jars/classes.jar
 new file mode 100644
-index 0000000..ded2706
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jars/classes.jar differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/arm64-v8a/libreanimated.so b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/arm64-v8a/libreanimated.so
 new file mode 100644
-index 0000000..a6a8cfa
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/arm64-v8a/libreanimated.so differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/armeabi-v7a/libreanimated.so b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/armeabi-v7a/libreanimated.so
 new file mode 100644
-index 0000000..23bfd8d
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/armeabi-v7a/libreanimated.so differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/x86/libreanimated.so b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/x86/libreanimated.so
 new file mode 100644
-index 0000000..d58794a
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/x86/libreanimated.so differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/x86_64/libreanimated.so b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/x86_64/libreanimated.so
 new file mode 100644
-index 0000000..f80282e
-Binary files /dev/null and b/node_modules/react-native-reanimated/android/build/.transforms/8f6b06b852fda83d33447607a861a6de/transformed/jetified-react-native-reanimated-68-jsc/jni/x86_64/libreanimated.so differ
+index 0000000..e69de29
 diff --git a/node_modules/react-native-reanimated/android/build/.transforms/aa3ab4d24bfcbe8adef866e74c81df19/results.bin b/node_modules/react-native-reanimated/android/build/.transforms/aa3ab4d24bfcbe8adef866e74c81df19/results.bin
 new file mode 100644
 index 0000000..5d66879
