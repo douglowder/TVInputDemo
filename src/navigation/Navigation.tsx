@@ -12,8 +12,7 @@ import {
   View,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-// import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {
   BackButton,
@@ -25,8 +24,6 @@ import {useTVTheme} from '../common/TVTheme';
 import {routes, componentForRoute} from './routes';
 
 import 'react-native/tvos-types.d';
-import useNavigationFocus from './useNavigationFocus';
-import {LastScreenProvider, useLastScreen} from './LastScreen';
 
 const About = () => {
   const [modalShown, setModalShown] = React.useState(false);
@@ -67,13 +64,6 @@ const About = () => {
 const HomeScreen = (props: {navigation: any}) => {
   const {navigation} = props;
 
-  // State used to track which screen was last navigated to, and set
-  // TV focus to the button for that screen when navigating back home
-  const {lastScreen} = useLastScreen();
-  const [needPreferredFocus, setNeedPreferredFocus] = React.useState(false);
-
-  useNavigationFocus(navigation, setNeedPreferredFocus);
-
   return (
     <SectionContainer title="">
       <View>
@@ -83,9 +73,6 @@ const HomeScreen = (props: {navigation: any}) => {
           })
           .map((item, i) => (
             <Button
-              hasTVPreferredFocus={
-                needPreferredFocus && lastScreen === item.key
-              }
               mode="contained"
               key={item.key}
               onPress={() => navigation.navigate(item.key)}>
@@ -100,10 +87,8 @@ const HomeScreen = (props: {navigation: any}) => {
 const ExampleScreen = (props: {navigation: any; route: any}) => {
   const {navigation, route} = props;
   const {styles} = useTVTheme();
-  const {setLastScreen} = useLastScreen();
+
   React.useEffect(() => {
-    // Set last screen context for the home navigation screen
-    setLastScreen(route.name);
     // On Apple TV, the menu key must not have an attached gesture handler,
     // otherwise it will not navigate out of the app back to the Apple TV main screen
     // as expected by Apple guidelines.
@@ -131,7 +116,7 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   );
 };
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const Navigation = (): any => {
   const headerOptions = {
@@ -154,31 +139,27 @@ const Navigation = (): any => {
     },
   };
 
-  const [lastScreen, setLastScreen] = React.useState('');
-
   return (
     <NavigationContainer theme={navigationTheme}>
-      <LastScreenProvider value={{lastScreen, setLastScreen}}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={headerOptions}
-          />
-          {Object.keys(routes)
-            .map((item) => {
-              return {...routes[item], key: item};
-            })
-            .map((item) => (
-              <Stack.Screen
-                name={item.key}
-                key={item.key}
-                component={ExampleScreen}
-                options={{headerShown: false}}
-              />
-            ))}
-        </Stack.Navigator>
-      </LastScreenProvider>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={headerOptions}
+        />
+        {Object.keys(routes)
+          .map((item) => {
+            return {...routes[item], key: item};
+          })
+          .map((item) => (
+            <Stack.Screen
+              name={item.key}
+              key={item.key}
+              component={ExampleScreen}
+              options={{headerShown: false}}
+            />
+          ))}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
