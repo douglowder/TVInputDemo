@@ -7,12 +7,14 @@ import React from 'react';
 import {
   BackHandler,
   Modal,
+  Platform,
   StyleSheet,
   TVEventControl,
   View,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import {
   BackButton,
@@ -37,8 +39,12 @@ const About = () => {
     opacity: 0.95,
   };
 
+  const aboutStyle = {
+    minHeight: 100,
+  };
+
   return (
-    <View>
+    <View style={aboutStyle}>
       <Button onPress={() => setModalShown(!modalShown)}>About</Button>
       <Modal
         animationType="fade"
@@ -116,17 +122,19 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   );
 };
 
-const Stack = createNativeStackNavigator();
+const Stack = (Platform.OS === 'android') ? createNativeStackNavigator(): createStackNavigator();
 
 const Navigation = (): any => {
+  const {colors, dark} = useTVTheme();
+
   const headerOptions = {
     headerShown: true,
     title: 'React Native TV demo',
     headerLeft: () => <View />,
     headerRight: () => <About />,
+    headerStyle: { backgroundColor: colors.background },
+    headerTitleStyle: { fontSize: 40, color: colors.text },
   };
-  const {colors, dark} = useTVTheme();
-
   const navigationTheme = {
     dark,
     colors: {
