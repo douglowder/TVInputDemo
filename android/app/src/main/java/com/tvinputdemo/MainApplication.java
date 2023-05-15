@@ -57,7 +57,7 @@ public class MainApplication extends Application implements ReactApplication {
 
     // Normally we only send key up events in ReactAndroidHWInputDeviceHelper
     // Change enableKeyDownEvents to true to send both key down and key up events
-    ReactFeatureFlags.enableKeyDownEvents = false;
+    // ReactFeatureFlags.enableKeyDownEvents = true;
 
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
