@@ -9,8 +9,6 @@ import org.apache.tools.ant.taskdefs.condition.Os
  * By default you don't need to apply any configuration, just uncomment the lines you need.
  */
 react {
-    // If hermes is enabled, react-native-reanimated has a CMake compilation issue
-    hermesEnabled = false
     /* Folders */
     //   The root of your project, i.e. where "package.json" lives. Default is '..'
     // root = file("../")
