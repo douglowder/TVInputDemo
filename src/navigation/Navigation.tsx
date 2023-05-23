@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createStackNavigator} from '@react-navigation/stack';
+// import {createStackNavigator} from '@react-navigation/stack';
 
 import {
   BackButton,
@@ -43,6 +43,12 @@ const About = () => {
     minHeight: 100,
   };
 
+  const version =
+    global.HermesInternal?.getRuntimeProperties?.()['OSS Release Version'] ??
+    '';
+
+  const hermesText = global.HermesInternal ? `Engine: Hermes ${version}` : '';
+
   return (
     <View style={aboutStyle}>
       <Button onPress={() => setModalShown(!modalShown)}>About</Button>
@@ -56,6 +62,9 @@ const About = () => {
             <Text>
               A demo of various APIs and components provided by React Native for
               TV.
+            </Text>
+            <Text>
+              {hermesText}
             </Text>
             <Button mode="contained" onPress={() => setModalShown(false)}>
               Dismiss
@@ -122,7 +131,8 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   );
 };
 
-const Stack = (Platform.OS === 'android') ? createNativeStackNavigator(): createStackNavigator();
+//const Stack = (Platform.OS === 'android') ? createNativeStackNavigator(): createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const Navigation = (): any => {
   const {colors, dark} = useTVTheme();
