@@ -16,8 +16,6 @@ import {Platform, StyleSheet, View, useTVEventHandler} from 'react-native';
 
 import Video from 'react-native-video';
 
-import 'react-native/tvos-types.d';
-
 const VideoExample = React.forwardRef(
   ({navigation}: {navigation: any}, ref: React.ForwardedRef<any>) => {
     const [volume, setVolume] = React.useState(1.0);

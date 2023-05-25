@@ -12,8 +12,6 @@ import {
   Text,
 } from '../common/StyledComponents';
 
-import 'react-native/tvos-types.d';
-
 const ButtonsWithFocusHandlingExample = () => {
   const [button1Focused, setButton1Focused] = React.useState(false);
   const [button2Focused, setButton2Focused] = React.useState(false);

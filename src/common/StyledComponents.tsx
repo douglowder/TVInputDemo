@@ -18,8 +18,6 @@ import {
 
 import {useTVTheme} from './TVTheme';
 
-import 'react-native/tvos-types.d';
-
 // Button used in the demos
 const Button = React.forwardRef(
   (props: React.ComponentPropsWithoutRef<typeof PaperButton>, ref: any) => {

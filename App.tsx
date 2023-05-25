@@ -12,8 +12,6 @@ import Navigation from './src/navigation/Navigation';
 
 import {TVThemeProvider, useTVTheme} from './src/common/TVTheme';
 
-import 'react-native/tvos-types.d';
-
 const Container = () => {
   const theme = useTVTheme();
   const containerStyle = {

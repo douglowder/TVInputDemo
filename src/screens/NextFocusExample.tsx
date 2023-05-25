@@ -11,8 +11,6 @@ import {
   Spacer,
 } from '../common/StyledComponents';
 
-import 'react-native/tvos-types.d';
-
 const NextFocusExample = () => {
   // Hold refs to the two buttons in states
   const [left, setLeft] = React.useState(undefined);

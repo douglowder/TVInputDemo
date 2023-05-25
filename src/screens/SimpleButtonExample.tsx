@@ -11,7 +11,6 @@ import {
   SectionContainer,
 } from '../common/StyledComponents';
 
-import 'react-native/tvos-types.d';
 import useNavigationFocus from '../navigation/useNavigationFocus';
 
 const SimpleButtonExample = (props: {navigation: any}) => {

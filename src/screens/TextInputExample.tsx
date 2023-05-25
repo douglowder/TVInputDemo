@@ -12,8 +12,6 @@ import {
   WrappedTextInput,
 } from '../common/StyledComponents';
 
-import 'react-native/tvos-types.d';
-
 const TextInputExample = () => {
   const [inputText, setInputText] = React.useState('Dougie MacLowder');
   const [inputNumber, setInputNumber] = React.useState('655321');

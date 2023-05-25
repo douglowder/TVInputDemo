@@ -13,7 +13,6 @@ import {
   Spacer,
 } from '../common/StyledComponents';
 
-import 'react-native/tvos-types.d';
 import {useTVTheme} from '../common/TVTheme';
 
 const TVFocusGuideViewExample = () => {

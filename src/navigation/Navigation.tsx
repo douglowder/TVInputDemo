@@ -25,8 +25,6 @@ import {
 import {useTVTheme} from '../common/TVTheme';
 import {routes, componentForRoute} from './routes';
 
-import 'react-native/tvos-types.d';
-
 const About = () => {
   const [modalShown, setModalShown] = React.useState(false);
   const {colors} = useTVTheme();
