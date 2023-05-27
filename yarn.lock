@@ -7745,10 +7745,10 @@ react-native-video@^5.2.1:
     prop-types "^15.7.2"
     shaka-player "^2.5.9"
 
-"react-native@npm:react-native-tvos@0.71.8-0rc2":
-  version "0.71.8-0rc2"
-  resolved "https://registry.yarnpkg.com/react-native-tvos/-/react-native-tvos-0.71.8-0rc2.tgz#d8b58635734fcddccd8c407ddfd65730d688f97f"
-  integrity sha512-lTvbRIFscMyOq/cXzN5BVsMWUOJSzbYnDyKHHLiGIv6st2ikGlDnqEa42FcLzmdDIeBoX0J4SGTsWr9VEwhy4g==
+"react-native@npm:react-native-tvos@0.71.8-0rc3":
+  version "0.71.8-0rc3"
+  resolved "https://registry.yarnpkg.com/react-native-tvos/-/react-native-tvos-0.71.8-0rc3.tgz#aa292d1cb3380d8d51962b362ab9fb9943819615"
+  integrity sha512-UiVrySepe3kD0wX3PyZsj0Unh9a8FhTPvppSG6zPSWdCUxawwlMKqUAOyMc8cJN9PpgH4L90meaCyV+76XS+SQ==
   dependencies:
     "@jest/create-cache-key-function" "^29.2.1"
     "@react-native-community/cli" "10.2.2"
