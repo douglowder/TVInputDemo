@@ -18,7 +18,7 @@
     "expo": "^48.0.16",
     "patch-package": "^7.0.0",
     "react": "18.2.0",
-    "react-native": "npm:react-native-tvos@0.71.8-0rc3",
+    "react-native": "npm:react-native-tvos@0.71.8-0rc4",
     "react-native-gesture-handler": "^2.10.1",
     "react-native-gradle-plugin": "^0.71.18",
     "react-native-paper": "4.12.1",
@@ -48,7 +48,7 @@
     "typescript": "4.8.4"
   },
   "resolutions": {
-    "react-native": "npm:react-native-tvos@0.71.8-0rc3",
+    "react-native": "npm:react-native-tvos@0.71.8-0rc4",
     "react-native-gradle-plugin": "0.71.18"
   },
   "jest": {
