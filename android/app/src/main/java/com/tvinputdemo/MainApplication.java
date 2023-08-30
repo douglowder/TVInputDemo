@@ -55,10 +55,6 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
 
-    // Normally we only send key up events in ReactAndroidHWInputDeviceHelper
-    // Change enableKeyDownEvents to true to send both key down and key up events
-    ReactFeatureFlags.enableKeyDownEvents = false;
-
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 }
