@@ -19,3 +19,16 @@ buildscript {
         classpath("com.facebook.react:react-native-gradle-plugin")
     }
 }
+
+// Do not use unless you are building React Native yourself and are generating local Maven artifacts for testing
+/*
+allprojects {
+    repositories {
+        maven {
+            url "file:///tmp/maven-local"
+        }
+        google()
+        mavenCentral()
+    }
+}
+ */
