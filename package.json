@@ -12,15 +12,13 @@
     "test": "jest"
   },
   "dependencies": {
-    "@react-native/codegen": "^0.72.6",
-    "@react-native/gradle-plugin": "^0.72.11",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/stack": "^6.3.17",
-    "expo": "^49.0.7",
+    "expo": "^49.0.16",
     "patch-package": "^7.0.0",
     "react": "18.2.0",
-    "react-native": "npm:react-native-tvos@0.72.4-0rc1",
+    "react-native": "npm:react-native-tvos@0.72.6-0",
     "react-native-gesture-handler": "^2.12.1",
     "react-native-paper": "4.12.1",
     "react-native-reanimated": "^3.4.2",
