@@ -10,6 +10,7 @@ import {
   Platform,
   StyleSheet,
   TVEventControl,
+  useTVEventHandler,
   View,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -27,7 +28,13 @@ import {routes, componentForRoute} from './routes';
 
 const About = () => {
   const [modalShown, setModalShown] = React.useState(false);
+  const [tvEventName, setTvEventName] = React.useState('');
+
   const {colors} = useTVTheme();
+
+  useTVEventHandler(event => {
+    setTvEventName(event.eventType);
+  });
 
   const modalStyle = {
     flex: 1,
@@ -50,6 +57,7 @@ const About = () => {
   return (
     <View style={aboutStyle}>
       <Button onPress={() => setModalShown(!modalShown)}>About</Button>
+      <Text>{tvEventName}</Text>
       <Modal
         animationType="fade"
         transparent={true}
@@ -61,9 +69,7 @@ const About = () => {
               A demo of various APIs and components provided by React Native for
               TV.
             </Text>
-            <Text>
-              {hermesText}
-            </Text>
+            <Text>{hermesText}</Text>
             <Button mode="contained" onPress={() => setModalShown(false)}>
               Dismiss
             </Button>
@@ -81,7 +87,7 @@ const HomeScreen = (props: {navigation: any}) => {
     <SectionContainer title="">
       <View>
         {Object.keys(routes)
-          .map((item) => {
+          .map(item => {
             return {...routes[item], key: item};
           })
           .map((item, i) => (
@@ -140,8 +146,8 @@ const Navigation = (): any => {
     title: 'React Native TV demo',
     headerLeft: () => <View />,
     headerRight: () => <About />,
-    headerStyle: { backgroundColor: colors.background },
-    headerTitleStyle: { fontSize: 40, color: colors.text },
+    headerStyle: {backgroundColor: colors.background},
+    headerTitleStyle: {fontSize: 40, color: colors.text},
   };
   const navigationTheme = {
     dark,
@@ -164,10 +170,10 @@ const Navigation = (): any => {
           options={headerOptions}
         />
         {Object.keys(routes)
-          .map((item) => {
+          .map(item => {
             return {...routes[item], key: item};
           })
-          .map((item) => (
+          .map(item => (
             <Stack.Screen
               name={item.key}
               key={item.key}
