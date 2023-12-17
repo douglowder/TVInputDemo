@@ -56,6 +56,8 @@ const sizes = {
   textPadding: 10.0 * scale,
   spacerWidth: 250.0 * scale,
   labelFontSize: 15.0 * scale,
+  smallTextSize: 7.0 * scale,
+  smallTextPadding: 2.0 * scale,
   headerFontSize: 30.0 * scale,
   headerHeight: 60.0 * scale,
 };

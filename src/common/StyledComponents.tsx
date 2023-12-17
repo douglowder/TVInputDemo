@@ -148,7 +148,9 @@ const WrappedTextInput = (props: React.ComponentProps<any>) => {
 // TV-styled text component
 const Text = (props: React.ComponentProps<typeof PaperText>) => {
   const {styles} = useTVTheme();
-  return <PaperText style={styles.text}>{props.children}</PaperText>;
+  return (
+    <PaperText style={[styles.text, props.style]}>{props.children}</PaperText>
+  );
 };
 
 // Just a view to fill in space, used in the focus guide and nextFocus demos

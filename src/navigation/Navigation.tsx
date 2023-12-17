@@ -9,13 +9,15 @@ import {
   Modal,
   Platform,
   StyleSheet,
+  TextStyle,
   TVEventControl,
   useTVEventHandler,
   View,
+  ViewStyle,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import {createStackNavigator} from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import {
   BackButton,
@@ -29,14 +31,15 @@ import {routes, componentForRoute} from './routes';
 const About = () => {
   const [modalShown, setModalShown] = React.useState(false);
   const [tvEventName, setTvEventName] = React.useState('');
+  const [tvEventsShown, setTVEventsShown] = React.useState(false);
 
-  const {colors} = useTVTheme();
+  const {colors, styles} = useTVTheme();
 
   useTVEventHandler(event => {
     setTvEventName(event.eventType);
   });
 
-  const modalStyle = {
+  const modalStyle: ViewStyle = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -44,20 +47,26 @@ const About = () => {
     opacity: 0.95,
   };
 
-  const aboutStyle = {
+  const aboutStyle: ViewStyle = {
     minHeight: 100,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   const version =
-    global.HermesInternal?.getRuntimeProperties?.()['OSS Release Version'] ??
-    '';
+    (global as any).HermesInternal?.getRuntimeProperties?.()[
+      'OSS Release Version'
+    ] ?? '';
 
-  const hermesText = global.HermesInternal ? `Engine: Hermes ${version}` : '';
+  const hermesText = (global as any).HermesInternal
+    ? `Engine: Hermes ${version}`
+    : '';
 
   return (
     <View style={aboutStyle}>
+      {tvEventsShown ? <Text>{tvEventName}</Text> : null}
       <Button onPress={() => setModalShown(!modalShown)}>About</Button>
-      <Text>{tvEventName}</Text>
       <Modal
         animationType="fade"
         transparent={true}
@@ -70,6 +79,9 @@ const About = () => {
               TV.
             </Text>
             <Text>{hermesText}</Text>
+            <Button onPress={() => setTVEventsShown(!tvEventsShown)}>
+              {tvEventsShown ? 'Hide TV events' : 'Show TV events'}
+            </Button>
             <Button mode="contained" onPress={() => setModalShown(false)}>
               Dismiss
             </Button>
@@ -135,8 +147,10 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   );
 };
 
-//const Stack = (Platform.OS === 'android') ? createNativeStackNavigator(): createStackNavigator();
-const Stack = createNativeStackNavigator();
+const Stack =
+  Platform.OS === 'android'
+    ? createNativeStackNavigator()
+    : createStackNavigator();
 
 const Navigation = (): any => {
   const {colors, dark} = useTVTheme();
