@@ -10,7 +10,6 @@ import {
   RowContainer,
   SectionContainer,
 } from '../common/StyledComponents';
-
 import useNavigationFocus from '../navigation/useNavigationFocus';
 
 const SimpleButtonExample = (props: {navigation: any}) => {

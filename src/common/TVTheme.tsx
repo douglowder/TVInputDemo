@@ -6,9 +6,9 @@
  */
 
 import React from 'react';
-import {DarkTheme, DefaultTheme} from 'react-native-paper';
 import {useColorScheme, Platform, StyleSheet} from 'react-native';
 import type {ViewStyle, TextStyle} from 'react-native';
+import {DarkTheme, DefaultTheme} from 'react-native-paper';
 type Theme = typeof DefaultTheme;
 
 // Add styles to the theme type
@@ -67,7 +67,7 @@ interface Styles {
   row: ViewStyle;
   text: TextStyle;
   textInput: TextStyle;
-  button: ViewStyle & {uppercaseLabel: boolean};
+  button: ViewStyle;
   spacer: ViewStyle;
 }
 

@@ -12,7 +12,6 @@ import {
   SectionContainer,
   Spacer,
 } from '../common/StyledComponents';
-
 import {useTVTheme} from '../common/TVTheme';
 
 const TVFocusGuideViewExample = () => {

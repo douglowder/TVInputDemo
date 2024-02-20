@@ -3,14 +3,11 @@
  */
 
 import React from 'react';
-
 import {Provider as PaperProvider} from 'react-native-paper';
-
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-import Navigation from './src/navigation/Navigation';
-
 import {TVThemeProvider, useTVTheme} from './src/common/TVTheme';
+import Navigation from './src/navigation/Navigation';
 
 const Container = () => {
   const theme = useTVTheme();

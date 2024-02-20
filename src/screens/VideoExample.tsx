@@ -3,18 +3,15 @@
  */
 
 import React from 'react';
+import {Platform, StyleSheet, View, useTVEventHandler} from 'react-native';
+import Video from 'react-native-video';
 
 import {
   Button,
   ProgressBar,
   SectionContainer,
 } from '../common/StyledComponents';
-
 import useNavigationFocus from '../navigation/useNavigationFocus';
-
-import {Platform, StyleSheet, View, useTVEventHandler} from 'react-native';
-
-import Video from 'react-native-video';
 
 const VideoExample = React.forwardRef(
   ({navigation}: {navigation: any}, ref: React.ForwardedRef<any>) => {
@@ -29,7 +26,7 @@ const VideoExample = React.forwardRef(
 
     const players: any = {};
 
-    useTVEventHandler((evt) => {
+    useTVEventHandler(evt => {
       if (evt && evt.eventType === 'playPause') {
         setPaused(!paused);
       }
@@ -61,7 +58,7 @@ const VideoExample = React.forwardRef(
               onLoad={onLoad}
               onProgress={onProgress}
               onEnd={() => {}}
-              repeat={true}
+              repeat
               resizeMode="contain"
             />
             <ProgressBar fractionComplete={currentTimePercentage()} />

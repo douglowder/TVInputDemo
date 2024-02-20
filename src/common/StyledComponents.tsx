@@ -4,17 +4,17 @@
  */
 import React from 'react';
 import {
-  Button as PaperButton,
-  List,
-  Text as PaperText,
-  TextInput as PaperTextInput,
-} from 'react-native-paper';
-import {
   StyleSheet,
   TouchableOpacity,
   View,
   Pressable as NativePressable,
 } from 'react-native';
+import {
+  Button as PaperButton,
+  List,
+  Text as PaperText,
+  TextInput as PaperTextInput,
+} from 'react-native-paper';
 
 import {useTVTheme} from './TVTheme';
 

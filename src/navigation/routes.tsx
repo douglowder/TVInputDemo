@@ -1,11 +1,11 @@
 import React from 'react';
 
-import SimpleButtonExample from '../screens/SimpleButtonExample';
 import ButtonsWithFocusHandlingExample from '../screens/ButtonsWithFocusHandlingExample';
-import TextInputExample from '../screens/TextInputExample';
-import TVFocusGuideViewExample from '../screens/TVFocusGuideViewExample';
 import NextFocusExample from '../screens/NextFocusExample';
 import PressableExample from '../screens/PressableExample';
+import SimpleButtonExample from '../screens/SimpleButtonExample';
+import TVFocusGuideViewExample from '../screens/TVFocusGuideViewExample';
+import TextInputExample from '../screens/TextInputExample';
 import VideoExample from '../screens/VideoExample';
 
 const routes: any = {

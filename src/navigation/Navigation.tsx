@@ -3,22 +3,21 @@
  * Includes support for navigation back to the list with the menu key (Apple TV) or back key (Android TV).
  */
 
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {
   BackHandler,
   Modal,
   Platform,
-  StyleSheet,
-  TextStyle,
   TVEventControl,
   useTVEventHandler,
   View,
   ViewStyle,
 } from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createStackNavigator} from '@react-navigation/stack';
 
+import {routes, componentForRoute} from './routes';
 import {
   BackButton,
   Button,
@@ -26,14 +25,13 @@ import {
   Text,
 } from '../common/StyledComponents';
 import {useTVTheme} from '../common/TVTheme';
-import {routes, componentForRoute} from './routes';
 
 const About = () => {
   const [modalShown, setModalShown] = React.useState(false);
   const [tvEventName, setTvEventName] = React.useState('');
   const [tvEventsShown, setTVEventsShown] = React.useState(false);
 
-  const {colors, styles} = useTVTheme();
+  const {colors} = useTVTheme();
 
   useTVEventHandler(event => {
     setTvEventName(event.eventType);
@@ -69,7 +67,7 @@ const About = () => {
       <Button onPress={() => setModalShown(!modalShown)}>About</Button>
       <Modal
         animationType="fade"
-        transparent={true}
+        transparent
         visible={modalShown}
         onRequestClose={() => setModalShown(false)}>
         <View style={modalStyle}>
@@ -201,11 +199,3 @@ const Navigation = (): any => {
 };
 
 export default Navigation;
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    paddingVertical: 30,
-  },
-});
