@@ -24,8 +24,11 @@
     "@babel/core": "~7.20.0",
     "@react-native-tvos/config-tv": "~0.0.5",
     "@types/react": "~18.2.14",
+    "eslint": "^8.56.0",
+    "expo-module-scripts": "^3.4.1",
     "patch-package": "^8.0.0",
     "postinstall-postinstall": "^2.1.0",
+    "prettier": "^3.2.5",
     "typescript": "^5.3.0"
   },
   "expo": {
@@ -38,6 +41,7 @@
   "private": true,
   "scripts": {
     "postinstall": "patch-package",
+    "lint": "eslint App.tsx src",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
