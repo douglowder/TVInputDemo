@@ -26,8 +26,9 @@ A demo project for [React Native for TV](https://github.com/react-native-tvos/re
 
 ```bash
 yarn
-npx pod-install
-yarn tvos # for Apple TV
+export EXPO_TV=1
+npx expo prebuild --clean
+yarn ios # for Apple TV
 yarn android # for Android TV, a TV emulator should already be running
 ```
 

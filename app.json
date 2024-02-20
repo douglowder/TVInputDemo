@@ -1,4 +1,17 @@
 {
-  "name": "TVInputDemo",
-  "displayName": "TVInputDemo"
+  "expo": {
+    "plugins": [
+      "@react-native-tvos/config-tv"
+    ],
+    "name": "TVInputDemo",
+    "slug": "TVInputDemo",
+    "android": {
+      "package": "com.douglowderexpo.TVInputDemo",
+      "userInterfaceStyle": "automatic"
+    },
+    "ios": {
+      "bundleIdentifier": "com.douglowderexpo.TVInputDemo",
+      "userInterfaceStyle": "automatic"  
+    }
+  }
 }
