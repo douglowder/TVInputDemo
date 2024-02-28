@@ -59,7 +59,8 @@ const sizes = {
   smallTextSize: 7.0 * scale,
   smallTextPadding: 2.0 * scale,
   headerFontSize: 30.0 * scale,
-  headerHeight: 60.0 * scale,
+  headerHeight: 100.0 * scale,
+  headerTitleSize: 30.0 * scale,
 };
 
 interface Styles {
@@ -89,7 +90,6 @@ const styleConfig = StyleSheet.create<Styles>({
   },
   button: {
     margin: sizes.buttonMargin,
-    uppercaseLabel: false,
   },
   spacer: {
     width: sizes.spacerWidth,

@@ -92,30 +92,34 @@ const About = () => {
 
 const HomeScreen = (props: {navigation: any}) => {
   const {navigation} = props;
+  const {sizes, styles} = useTVTheme();
 
   return (
-    <SectionContainer title="">
-      <View>
-        {Object.keys(routes)
-          .map(item => {
-            return {...routes[item], key: item};
-          })
-          .map((item, i) => (
-            <Button
-              mode="contained"
-              key={item.key}
-              onPress={() => navigation.navigate(item.key)}>
-              ({i + 1}) {item.title}
-            </Button>
-          ))}
-      </View>
-    </SectionContainer>
+    <View style={styles.container}>
+      <View style={{height: sizes.headerHeight}} />
+      <SectionContainer title="">
+        <View>
+          {Object.keys(routes)
+            .map(item => {
+              return {...routes[item], key: item};
+            })
+            .map((item, i) => (
+              <Button
+                mode="contained"
+                key={item.key}
+                onPress={() => navigation.navigate(item.key)}>
+                ({i + 1}) {item.title}
+              </Button>
+            ))}
+        </View>
+      </SectionContainer>
+    </View>
   );
 };
 
 const ExampleScreen = (props: {navigation: any; route: any}) => {
   const {navigation, route} = props;
-  const {styles} = useTVTheme();
+  const {styles, sizes} = useTVTheme();
 
   React.useEffect(() => {
     // On Apple TV, the menu key must not have an attached gesture handler,
@@ -138,6 +142,7 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   });
   return (
     <View style={styles.container}>
+      <View style={{height: sizes.headerHeight}} />
       {componentForRoute(route.name, {navigation})}
       <View style={styles.container} />
       <BackButton onPress={() => navigation.goBack()}>Back</BackButton>
@@ -151,16 +156,21 @@ const Stack =
     : createStackNavigator();
 
 const Navigation = (): any => {
-  const {colors, dark} = useTVTheme();
+  const {colors, dark, sizes} = useTVTheme();
 
-  const headerOptions = {
+  const homeHeaderOptions = {
     headerShown: true,
     title: 'React Native TV demo',
     headerLeft: () => <View />,
     headerRight: () => <About />,
-    headerStyle: {backgroundColor: colors.background},
-    headerTitleStyle: {fontSize: 40, color: colors.text},
+    headerStyle: {
+      backgroundColor: colors.background,
+      height: sizes.headerHeight,
+    },
+    headerTransparent: true,
+    headerTitleStyle: {fontSize: sizes.headerTitleSize, color: colors.text},
   };
+
   const navigationTheme = {
     dark,
     colors: {
@@ -179,7 +189,7 @@ const Navigation = (): any => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={headerOptions}
+          options={homeHeaderOptions}
         />
         {Object.keys(routes)
           .map(item => {
@@ -190,7 +200,13 @@ const Navigation = (): any => {
               name={item.key}
               key={item.key}
               component={ExampleScreen}
-              options={{headerShown: false}}
+              options={({navigation, route}) => ({
+                ...homeHeaderOptions,
+                title: route.name,
+                headerLeft: () => (
+                  <Button onPress={() => navigation.goBack()}>Back</Button>
+                ),
+              })}
             />
           ))}
       </Stack.Navigator>
