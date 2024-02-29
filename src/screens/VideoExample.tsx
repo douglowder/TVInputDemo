@@ -2,9 +2,14 @@
  * Demo of react-native-video usage for Apple TV and Android TV
  */
 
+import {
+  Video,
+  ResizeMode,
+  AVPlaybackStatus,
+  VideoFullscreenUpdate,
+} from 'expo-av';
 import React from 'react';
 import {Platform, StyleSheet, View, useTVEventHandler} from 'react-native';
-import Video from 'react-native-video';
 
 import {
   Button,
@@ -13,72 +18,94 @@ import {
 } from '../common/StyledComponents';
 import useNavigationFocus from '../navigation/useNavigationFocus';
 
-const VideoExample = React.forwardRef(
-  ({navigation}: {navigation: any}, ref: React.ForwardedRef<any>) => {
-    const [volume, setVolume] = React.useState(1.0);
-    const [duration, setDuration] = React.useState(0.0);
-    const [currentTime, setCurrentTime] = React.useState(0.0);
-    const [paused, setPaused] = React.useState(true);
+type Status = Partial<AVPlaybackStatus> & {
+  isPlaying?: boolean;
+  uri?: string;
+  rate?: number;
+  positionMillis?: number;
+  playableDurationMillis?: number;
+};
 
-    const [hasNavigationFocus, setHasNavigationFocus] = React.useState(false);
+const VideoExample = ({navigation}: {navigation: any}) => {
+  const video = React.useRef<Video>();
 
-    useNavigationFocus(navigation, setHasNavigationFocus);
+  const [status, setStatus] = React.useState<Status>({
+    isPlaying: false,
+  });
+  const [isFullScreen, setIsFullScreen] = React.useState(false);
 
-    const players: any = {};
+  const progress =
+    status.playableDurationMillis !== undefined &&
+    status.positionMillis !== undefined
+      ? status.positionMillis / status.playableDurationMillis
+      : 0;
 
-    useTVEventHandler(evt => {
-      if (evt && evt.eventType === 'playPause') {
-        setPaused(!paused);
-      }
-    });
+  const [hasNavigationFocus, setHasNavigationFocus] = React.useState(false);
 
-    const onLoad = (data: any) => {
-      setDuration(data.duration);
-    };
+  useNavigationFocus(navigation, setHasNavigationFocus);
 
-    const onProgress = (data: any) => {
-      setCurrentTime(data.currentTime);
-    };
+  useTVEventHandler(evt => {
+    if (evt && evt.eventType === 'playPause') {
+      playPause();
+    }
+  });
 
-    const currentTimePercentage = () =>
-      currentTime > 0 ? currentTime / duration : 0;
+  const playPause = () =>
+    status?.isPlaying ?? false
+      ? video.current.pauseAsync()
+      : video.current.playAsync();
 
-    return (
-      <SectionContainer title="Video example">
-        <View style={styles.videoContainer}>
-          <View>
-            <Video
-              ref={(r: Video) => (players[ref] = r)}
-              source={require('../../assets/bach-handel-corelli.mp4')}
-              style={styles.video}
-              rate={1}
-              volume={volume}
-              muted={false}
-              paused={paused}
-              onLoad={onLoad}
-              onProgress={onProgress}
-              onEnd={() => {}}
-              repeat
-              resizeMode="contain"
-            />
-            <ProgressBar fractionComplete={currentTimePercentage()} />
-          </View>
-          <View style={styles.generalControls}>
-            <Button
-              hasTVPreferredFocus={hasNavigationFocus}
-              onPress={() => setPaused(!paused)}>
-              {paused ? 'Play' : 'Pause'}
-            </Button>
-            <Button onPress={() => players[ref].seek(0)}>Rewind</Button>
-            <Button onPress={() => setVolume(0.0)}>No volume</Button>
-            <Button onPress={() => setVolume(0.5)}>Half volume</Button>
-            <Button onPress={() => setVolume(1.0)}>Full volume</Button>
-          </View>
+  const adjustVolume = (volume: number) => {
+    video.current.setVolumeAsync(volume);
+  };
+
+  return (
+    <SectionContainer title="Video example">
+      <View style={styles.videoContainer}>
+        <View>
+          <Video
+            ref={video}
+            style={isFullScreen ? {display: 'none'} : styles.video}
+            source={require('../../assets/bach-handel-corelli.mp4')}
+            resizeMode={ResizeMode.CONTAIN}
+            isLooping
+            useNativeControls={false}
+            onPlaybackStatusUpdate={newStatus => {
+              setStatus(_status => newStatus);
+            }}
+            onFullscreenUpdate={event => {
+              if (
+                event.fullscreenUpdate ===
+                VideoFullscreenUpdate.PLAYER_WILL_PRESENT
+              ) {
+                setIsFullScreen(true);
+              }
+              if (
+                event.fullscreenUpdate ===
+                VideoFullscreenUpdate.PLAYER_DID_DISMISS
+              ) {
+                setIsFullScreen(false);
+              }
+            }}
+          />
+          <ProgressBar fractionComplete={progress} />
         </View>
-      </SectionContainer>
-    );
-  },
-);
+        <View style={styles.generalControls}>
+          <Button hasTVPreferredFocus={hasNavigationFocus} onPress={playPause}>
+            {status.isPlaying ? 'Pause' : 'Play'}
+          </Button>
+          <Button onPress={() => video.current.replayAsync()}>Rewind</Button>
+          <Button onPress={() => adjustVolume(0.0)}>No volume</Button>
+          <Button onPress={() => adjustVolume(0.5)}>Half volume</Button>
+          <Button onPress={() => adjustVolume(1.0)}>Full volume</Button>
+          <Button onPress={() => video.current.presentFullscreenPlayer()}>
+            Full screen
+          </Button>
+        </View>
+      </View>
+    </SectionContainer>
+  );
+};
 
 export default VideoExample;
 
@@ -89,8 +116,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   video: {
-    width: Platform.OS === 'android' ? 640 : 1280,
-    height: Platform.OS === 'android' ? 360 : 720,
+    width: Platform.OS === 'android' ? 640 : 960,
+    height: Platform.OS === 'android' ? 360 : 640,
   },
   generalControls: {},
 });
