@@ -1,7 +1,19 @@
 {
   "expo": {
     "plugins": [
-      "@react-native-tvos/config-tv"
+      "@react-native-tvos/config-tv",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "newArchEnabled": false,
+            "flipper": false
+          },
+          "android": {
+            "newArchEnabled": false
+          }
+        }
+      ]
     ],
     "name": "TVInputDemo",
     "slug": "TVInputDemo",
@@ -11,7 +23,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.douglowderexpo.TVInputDemo",
-      "userInterfaceStyle": "automatic"  
+      "userInterfaceStyle": "automatic"
     }
   }
 }
