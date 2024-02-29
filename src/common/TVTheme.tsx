@@ -59,8 +59,9 @@ const sizes = {
   smallTextSize: 7.0 * scale,
   smallTextPadding: 2.0 * scale,
   headerFontSize: 30.0 * scale,
-  headerHeight: 100.0 * scale,
+  headerHeight: Platform.OS === 'ios' ? 100.0 * scale : 60.0 * scale,
   headerTitleSize: 30.0 * scale,
+  headerLeftRightWidth: 200.0 * scale,
 };
 
 interface Styles {
@@ -70,31 +71,67 @@ interface Styles {
   textInput: TextStyle;
   button: ViewStyle;
   spacer: ViewStyle;
+  header?: ViewStyle;
+  headerLeft: ViewStyle;
+  headerRight: ViewStyle;
+  headerCenter: ViewStyle;
+  headerTitle: TextStyle;
 }
 
 // Now define the styles based on the above sizes
-const styleConfig = StyleSheet.create<Styles>({
-  container: {
-    flex: 1,
-  },
-  row: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: sizes.rowPadding,
-  },
-  text: {
-    padding: sizes.textPadding,
-  },
-  textInput: {
-    fontSize: sizes.labelFontSize,
-  },
-  button: {
-    margin: sizes.buttonMargin,
-  },
-  spacer: {
-    width: sizes.spacerWidth,
-  },
-});
+const styleConfig = (theme: Theme) =>
+  StyleSheet.create<Styles>({
+    container: {
+      flex: 1,
+    },
+    row: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      padding: sizes.rowPadding,
+    },
+    text: {
+      padding: sizes.textPadding,
+    },
+    textInput: {
+      fontSize: sizes.labelFontSize,
+    },
+    button: {
+      margin: sizes.buttonMargin,
+    },
+    spacer: {
+      width: sizes.spacerWidth,
+    },
+    header: {
+      flex: 1,
+      flexDirection: 'row',
+      width: '100%',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: theme.colors.background,
+      height: sizes.headerHeight,
+    },
+    headerLeft: {
+      flexDirection: 'row',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      width: sizes.headerLeftRightWidth,
+    },
+    headerRight: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+      width: sizes.headerLeftRightWidth,
+    },
+    headerCenter: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    headerTitle: {
+      fontSize: sizes.headerTitleSize,
+      fontWeight: 'bold',
+    },
+  });
 
 // Returns the dark or light theme we want for TV
 const tvTheme = (dark: boolean): TVTheme => {
@@ -110,7 +147,7 @@ const tvTheme = (dark: boolean): TVTheme => {
     },
     fonts: fontConfig(baseTheme),
     sizes,
-    styles: styleConfig,
+    styles: styleConfig(baseTheme),
   };
 };
 

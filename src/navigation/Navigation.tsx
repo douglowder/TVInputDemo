@@ -4,13 +4,14 @@
  */
 
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from '@react-navigation/stack';
 import React from 'react';
 import {
   BackHandler,
   Modal,
-  Platform,
   TVEventControl,
   useTVEventHandler,
   View,
@@ -150,25 +151,41 @@ const ExampleScreen = (props: {navigation: any; route: any}) => {
   );
 };
 
-const Stack =
-  Platform.OS === 'android'
-    ? createNativeStackNavigator()
-    : createStackNavigator();
+const Stack = createStackNavigator();
 
+const Header = (props: {
+  title: string;
+  canGoBack?: boolean;
+  navigation?: any;
+}) => {
+  const {styles} = useTVTheme();
+  return (
+    <View style={styles.header}>
+      <View style={styles.headerLeft}>
+        {props.canGoBack ? (
+          <Button onPress={() => props.navigation.goBack()}>Back</Button>
+        ) : (
+          <View />
+        )}
+      </View>
+      <View style={styles.headerCenter}>
+        <Text style={styles.headerTitle}>{props.title}</Text>
+      </View>
+      <View style={styles.headerRight}>
+        <About />
+      </View>
+    </View>
+  );
+};
 const Navigation = (): any => {
-  const {colors, dark, sizes} = useTVTheme();
+  const {colors, dark} = useTVTheme();
 
-  const homeHeaderOptions = {
+  const homeHeaderOptions: StackNavigationOptions = {
     headerShown: true,
     title: 'React Native TV demo',
-    headerLeft: () => <View />,
-    headerRight: () => <About />,
-    headerStyle: {
-      backgroundColor: colors.background,
-      height: sizes.headerHeight,
-    },
+    header: () => <Header title="React Native TV demo" />,
+    headerMode: 'float',
     headerTransparent: true,
-    headerTitleStyle: {fontSize: sizes.headerTitleSize, color: colors.text},
   };
 
   const navigationTheme = {
@@ -203,8 +220,12 @@ const Navigation = (): any => {
               options={({navigation, route}) => ({
                 ...homeHeaderOptions,
                 title: route.name,
-                headerLeft: () => (
-                  <Button onPress={() => navigation.goBack()}>Back</Button>
+                header: () => (
+                  <Header
+                    navigation={navigation}
+                    title={route.name}
+                    canGoBack
+                  />
                 ),
               })}
             />
