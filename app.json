@@ -1,7 +1,20 @@
 {
   "expo": {
     "plugins": [
-      "@react-native-tvos/config-tv",
+      [
+        "@react-native-tvos/config-tv",
+        {
+          "androidTVBanner": "./assets/images/react-logo-400x240.png",
+          "appleTVImages": {
+            "icon": "./assets/images/react-logo-1280x768.png",
+            "iconSmall": "./assets/images/react-logo-400x240.png",
+            "topShelf": "./assets/images/react-logo-1920x720.png",
+            "topShelf2x": "./assets/images/react-logo-3840x1440.png",
+            "topShelfWide": "./assets/images/react-logo-2320x720.png",
+            "topShelfWide2x": "./assets/images/react-logo-4640x1440.png"
+          }
+        }
+      ],
       [
         "expo-build-properties",
         {
