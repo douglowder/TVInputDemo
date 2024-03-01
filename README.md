@@ -2,25 +2,25 @@
 
 A demo project for [React Native for TV](https://github.com/react-native-tvos/react-native-tvos).
 
-As of RNTV 0.73, the project uses the Expo SDK, as described in the Expo guide ["Build Expo apps for TV"](https://docs.expo.dev/guides/building-for-tv/).
+This project uses the Expo SDK, as described in the Expo guide ["Build Expo apps for TV"](https://docs.expo.dev/guides/building-for-tv/).
 
-### Demonstrations included
+### RNTV demonstrations included
 
 - Simple buttons
 - Buttons that detect when they are focused (activated) by the TV focus engine
 - Use of `Pressable`
 - Use of `TextInput`
-- TV-specific focus management APIs (`TVFocusGuideView`, `nextFocus`, `hasTVPreferredFocus`)
+- TV-specific focus management components and APIs (`TVFocusGuideView`, `nextFocus()`, `hasTVPreferredFocus()`)
 - Apple TV menu key enablement with `TVEventControl`
-- Handling remote control events explicitly with `useTVEventHandler`
+- Handling remote control events explicitly with `useTVEventHandler()`
 - Dark/light theming with `useColorScheme()` and React context
-- Video demo using the [Video component from `expo-av`](https://docs.expo.dev/versions/latest/sdk/video/)
 
-### Third party frameworks used
+### Other demonstrations included
 
 - Navigation with [React Navigation](https://reactnavigation.org/)
 - Animation with [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
 - Material design components from [React Native Paper](https://callstack.github.io/react-native-paper/)
+- Video demo using the [Video component](https://docs.expo.dev/versions/latest/sdk/video/) from the `expo-av` package
 
 ### Getting started
 
